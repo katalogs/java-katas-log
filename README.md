@@ -50,7 +50,7 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - [Race Car Katas](racing-car-kata/README.md)
 
 ### Other katas
-- [Order Shipping (Tell don't ask) Kata](tell-dont-ask/README.md)
+- [Order Shipping (Tell don't ask)](tell-dont-ask/README.md)
 - [Approval Kata](https://github.com/ythirion/approval-demo)
-- [Functional Programming in java Kata](vavr-kata/README.md)
+- [Functional Programming in java](vavr-kata/README.md)
 - Others [refactoring katas](https://kata-log.rocks/refactoring)
