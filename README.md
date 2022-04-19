@@ -34,6 +34,7 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 
 ### TDD on algorithms
 - [Diamond](diamond-kata/README.md)
+	- Use Property-Based Testing with [junit quickcheck](https://pholser.github.io/junit-quickcheck/site/1.0/)
 - [Lags](lags-kata/README.md)
 - [Cyclomatic Complexity One constraint](docs/contraints/CyclomaticComplexityOne.md)
 - [Object Calisthenics constraint](docs/contraints/ObjectCalisthenics.md)
