@@ -34,16 +34,16 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 
 ### TDD on algorithms
 - [Diamond](diamond-kata/README.md)
-- [Lags](LagsKata/README.md)
+- [Lags](lags-kata/README.md)
 - [Cyclomatic Complexity One constraint](docs/contraints/CyclomaticComplexityOne.md)
 - [Object Calisthenics constraint](docs/contraints/ObjectCalisthenics.md)
 
 ### Legacy code refactoring katas
 
-- [Sing A Song](SingASongKata/README.md)
-- [Task List](TaskListKata/README.md)
-- - Theatricl
-- Gilded Rose
+- [Sing A Song](sing-a-song-kata/README.md)
+- [Task List](task-list-kata/README.md)
+- [Theatrical Players](theatrical-players-kata/README.md)
+- [Gilded Rose](gilded-rose-kata/README.md)
 - Race Car Katas
 - Ugly trivia game
 
