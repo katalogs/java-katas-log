@@ -16,7 +16,7 @@ logs/
 *.dat
 *.ipr
 *.iws
-
+*.iml
 *.log
 
 # Approval
