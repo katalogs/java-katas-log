@@ -1,6 +1,5 @@
 package com.kata.elections;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 class ElectionsTest {
-
     @Test
     void electionWithoutDistricts() {
         Map<String, List<String>> list = Map.of(
@@ -30,16 +28,9 @@ class ElectionsTest {
         elections.voteFor("Simon", "", "District 2");
         elections.voteFor("Carole", "", "District 3");
 
-        Map<String, String> results = elections.results();
+        var results = elections.results();
 
-        Map<String, String> expectedResults = Map.of(
-                "Jerry", "50,00%",
-                "Johnny", "50,00%",
-                "Michel", "0,00%",
-                "Blank", "25,00%",
-                "Null", "25,00%",
-                "Abstention", "11,11%");
-        Assertions.assertThat(results).isEqualTo(expectedResults);
+        //todo : add approval tests here
     }
 
     @Test
@@ -64,15 +55,8 @@ class ElectionsTest {
         elections.voteFor("Simon", "", "District 2");
         elections.voteFor("Carole", "", "District 3");
 
-        Map<String, String> results = elections.results();
+        var results = elections.results();
 
-        Map<String, String> expectedResults = Map.of(
-                "Jerry", "66,67%",
-                "Johnny", "33,33%",
-                "Michel", "0,00%",
-                "Blank", "22,22%",
-                "Null", "22,22%",
-                "Abstention", "0,00%");
-        Assertions.assertThat(results).isEqualTo(expectedResults);
+        //todo : add approval tests here
     }
 }
