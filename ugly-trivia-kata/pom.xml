@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kata</groupId>
-    <artifactId>task-list</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>task-list-kata</name>
-    <description>Task list kata</description>
+    <artifactId>uglytrivia</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
     <properties>
         <java.version>11</java.version>
         <junit.version>5.8.2</junit.version>
@@ -14,6 +13,7 @@
         <junit.surefire.provider>1.3.2</junit.surefire.provider>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -35,6 +35,12 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertJ.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+            <version>15.1.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

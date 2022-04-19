@@ -1,0 +1,74 @@
+Bart was added
+They are player number 1
+Lisa was added
+They are player number 2
+Bart is the current player
+They have rolled a 1
+Bart's new location is 1
+The category is Science
+Science Question 0
+Answer was corrent!!!!
+Bart now has 1 Gold Coins.
+Lisa is the current player
+They have rolled a 2
+Lisa's new location is 2
+The category is Sports
+Sports Question 0
+Answer was corrent!!!!
+Lisa now has 1 Gold Coins.
+Bart is the current player
+They have rolled a 2
+Bart's new location is 3
+The category is Rock
+Rock Question 0
+Answer was corrent!!!!
+Bart now has 2 Gold Coins.
+Lisa is the current player
+They have rolled a 2
+Lisa's new location is 4
+The category is Pop
+Pop Question 0
+Answer was corrent!!!!
+Lisa now has 2 Gold Coins.
+Bart is the current player
+They have rolled a 2
+Bart's new location is 5
+The category is Science
+Science Question 1
+Answer was corrent!!!!
+Bart now has 3 Gold Coins.
+Lisa is the current player
+They have rolled a 2
+Lisa's new location is 6
+The category is Sports
+Sports Question 1
+Answer was corrent!!!!
+Lisa now has 3 Gold Coins.
+Bart is the current player
+They have rolled a 2
+Bart's new location is 7
+The category is Rock
+Rock Question 1
+Answer was corrent!!!!
+Bart now has 4 Gold Coins.
+Lisa is the current player
+They have rolled a 2
+Lisa's new location is 8
+The category is Pop
+Pop Question 1
+Answer was corrent!!!!
+Lisa now has 4 Gold Coins.
+Bart is the current player
+They have rolled a 2
+Bart's new location is 9
+The category is Science
+Science Question 2
+Answer was corrent!!!!
+Bart now has 5 Gold Coins.
+Lisa is the current player
+They have rolled a 2
+Lisa's new location is 10
+The category is Sports
+Sports Question 2
+Answer was corrent!!!!
+Lisa now has 5 Gold Coins.

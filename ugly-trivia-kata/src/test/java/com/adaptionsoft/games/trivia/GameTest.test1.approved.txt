@@ -1,0 +1,26 @@
+Bart was added
+They are player number 1
+Bart is the current player
+They have rolled a 12
+Bart's new location is 0
+The category is Pop
+Pop Question 0
+Question was incorrectly answered
+Bart was sent to the penalty box
+Bart is the current player
+They have rolled a 2
+Bart is not getting out of the penalty box
+Bart is the current player
+They have rolled a 13
+Bart is getting out of the penalty box
+Bart's new location is 1
+The category is Science
+Science Question 0
+Answer was correct!!!!
+Bart now has 1 Gold Coins.
+Bart is the current player
+They have rolled a 13
+Bart is getting out of the penalty box
+Bart's new location is 2
+The category is Sports
+Sports Question 0

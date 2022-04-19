@@ -39,17 +39,19 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - [Object Calisthenics constraint](docs/contraints/ObjectCalisthenics.md)
 
 ### Legacy code refactoring katas
-
 - [Sing A Song](sing-a-song-kata/README.md)
 - [Task List](task-list-kata/README.md)
 - [Theatrical Players](theatrical-players-kata/README.md)
 - [Gilded Rose](gilded-rose-kata/README.md)
+- [Ugly trivia game](ugly-trivia-kata/README.md)
+- [Yatzy game](yatzy-kata/README.md)
+
+### SOLID Principles
 - [Race Car Katas](racing-car-kata/README.md)
-- [Ugly trivia game]()
 
 ### Other katas
-- [Approval Kata](ApprovalKata/README.md)
-- [Order Shipping (Tell don't ask) Kata](OrderShippingKata/README.md)
+- [Order Shipping (Tell don't ask) Kata](tell-dont-ask/README.md)
+- [Approval Kata](https://github.com/ythirion/approval-demo)
 - [Functional Programming in C# Kata](LanguageExtKata/README.md)
 - [Test && Commit || Revert](TcrKata/README.md) : aka TDD on steroids
 - Other [refactoring katas](https://kata-log.rocks/refactoring)

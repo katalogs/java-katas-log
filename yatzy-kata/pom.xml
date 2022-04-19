@@ -3,10 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kata</groupId>
-    <artifactId>task-list</artifactId>
+    <artifactId>yatzy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>task-list-kata</name>
-    <description>Task list kata</description>
+    <name>yatzy-kata</name>
+    <description>Yatzy kata</description>
+
     <properties>
         <java.version>11</java.version>
         <junit.version>5.8.2</junit.version>
@@ -14,6 +15,7 @@
         <junit.surefire.provider>1.3.2</junit.surefire.provider>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -56,4 +58,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
