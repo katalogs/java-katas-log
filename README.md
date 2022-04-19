@@ -52,6 +52,5 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 ### Other katas
 - [Order Shipping (Tell don't ask) Kata](tell-dont-ask/README.md)
 - [Approval Kata](https://github.com/ythirion/approval-demo)
-- [Functional Programming in C# Kata](LanguageExtKata/README.md)
-- [Test && Commit || Revert](TcrKata/README.md) : aka TDD on steroids
-- Other [refactoring katas](https://kata-log.rocks/refactoring)
+- [Functional Programming in java Kata](vavr-kata/README.md)
+- Others [refactoring katas](https://kata-log.rocks/refactoring)
