@@ -44,8 +44,8 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - [Task List](task-list-kata/README.md)
 - [Theatrical Players](theatrical-players-kata/README.md)
 - [Gilded Rose](gilded-rose-kata/README.md)
-- Race Car Katas
-- Ugly trivia game
+- [Race Car Katas](racing-car-kata/README.md)
+- [Ugly trivia game]()
 
 ### Other katas
 - [Approval Kata](ApprovalKata/README.md)
