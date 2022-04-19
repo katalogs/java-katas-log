@@ -29,16 +29,14 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 
 ### Top-Down TDD
 - [Banking with Cucumber](bank-kata/README.md)
-- [Mars Rover](MarsRoverKata/README.md)
+- [Mars Rover](mars-rover-kata/README.md)
 - [Diamond](diamond-kata/README.md)
 
 ### TDD on algorithms
 - [Diamond](diamond-kata/README.md)
-- [Kata Lags](LagsKata/README.md)
-- Anagrams
+- [Lags](LagsKata/README.md)
 - [Cyclomatic Complexity One constraint](docs/contraints/CyclomaticComplexityOne.md)
 - [Object Calisthenics constraint](docs/contraints/ObjectCalisthenics.md)
-
 
 ### Legacy code refactoring katas
 
