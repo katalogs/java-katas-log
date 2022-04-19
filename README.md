@@ -41,6 +41,7 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 ### Legacy code refactoring katas
 - [Sing A Song](sing-a-song-kata/README.md)
 - [Task List](task-list-kata/README.md)
+- [Elections - avoir fraud](elections-kata/README.md)
 - [Theatrical Players](theatrical-players-kata/README.md)
 - [Gilded Rose](gilded-rose-kata/README.md)
 - [Ugly trivia game](ugly-trivia-kata/README.md)
