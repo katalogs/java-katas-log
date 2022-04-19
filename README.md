@@ -12,7 +12,7 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - [Manhattan distance](manhattan-distance-kata/README.md)
 
 ### Designing with TDD
-- [Mars Rover](MarsRoverKata/README.md)
+- [Mars Rover](mars-rover-kata/README.md)
 - [No primitive constraint](docs/contraints/NoPrimitive.md)
 - [Tell! Don't Ask constraint](docs/contraints/TellDontAsk.md)
 - [CQS constraint](docs/contraints/CQS.md)
@@ -28,14 +28,12 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - Langton ant
 
 ### Top-Down TDD
-- Kata Potter
-- LCD
-- [Banking with Specflow](BankingKata/README.md)
+- [Banking with Cucumber](bank-kata/README.md)
 - [Mars Rover](MarsRoverKata/README.md)
-- [Diamond](DiamondKata/README.md)
+- [Diamond](diamond-kata/README.md)
 
 ### TDD on algorithms
-- [Diamond](DiamondKata/README.md)
+- [Diamond](diamond-kata/README.md)
 - [Kata Lags](LagsKata/README.md)
 - Anagrams
 - [Cyclomatic Complexity One constraint](docs/contraints/CyclomaticComplexityOne.md)
@@ -46,6 +44,7 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 
 - [Sing A Song](SingASongKata/README.md)
 - [Task List](TaskListKata/README.md)
+- - Theatricl
 - Gilded Rose
 - Race Car Katas
 - Ugly trivia game
@@ -54,5 +53,5 @@ This repository contains kata starter projects to learn TDD toward refactoring l
 - [Approval Kata](ApprovalKata/README.md)
 - [Order Shipping (Tell don't ask) Kata](OrderShippingKata/README.md)
 - [Functional Programming in C# Kata](LanguageExtKata/README.md)
-- Other [refactoring katas](https://kata-log.rocks/refactoring)
+- [Test && Commit || Revert](TcrKata/README.md) : aka TDD on steroids
 - Other [refactoring katas](https://kata-log.rocks/refactoring)
