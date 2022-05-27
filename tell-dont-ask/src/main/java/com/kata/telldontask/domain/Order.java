@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kata.telldontask.useCase.SellItemRequest;
+
 public class Order {
 
   private BigDecimal total;
@@ -68,6 +70,13 @@ public class Order {
   public void setId(int id) {
     this.id = id;
   }
+
+public void addItem(Product product, SellItemRequest itemRequest) {
+	final OrderItem orderItem = new OrderItem(product, itemRequest);
+	this.getItems().add(orderItem);
+    this.setTotal(this.getTotal().add(orderItem.getTaxedAmount()));
+    this.setTax(this.getTax().add(orderItem.getTax()));
+}
 
 
 }
