@@ -27,7 +27,7 @@ public class Order {
     return total;
   }
 
-  public void setTotal(BigDecimal total) {
+  private void setTotal(BigDecimal total) {
     this.total = total;
   }
 
@@ -35,23 +35,15 @@ public class Order {
     return currency;
   }
 
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
-
   public List<OrderItem> getItems() {
     return items;
-  }
-
-  public void setItems(List<OrderItem> items) {
-    this.items = items;
   }
 
   public BigDecimal getTax() {
     return tax;
   }
 
-  public void setTax(BigDecimal tax) {
+  private void setTax(BigDecimal tax) {
     this.tax = tax;
   }
 
