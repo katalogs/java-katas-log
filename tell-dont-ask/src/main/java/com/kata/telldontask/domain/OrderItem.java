@@ -8,51 +8,52 @@ import java.math.BigDecimal;
 
 public class OrderItem {
 
-  private Product product;
-  private int quantity;
-  private BigDecimal taxedAmount;
-  private BigDecimal tax;
+  private final Product product;
+  private final int quantity;
+  private final BigDecimal taxedAmount;
+  private final BigDecimal tax;
 
   public OrderItem(Product product, SellItemRequest itemRequest) {
-    final BigDecimal unitaryTax = product.getPrice().divide(valueOf(100))
-        .multiply(product.getCategory().getTaxPercentage()).setScale(2, HALF_UP);
-    final BigDecimal unitaryTaxedAmount = product.getPrice().add(unitaryTax).setScale(2, HALF_UP);
-    this.taxedAmount = unitaryTaxedAmount.multiply(valueOf(itemRequest.getQuantity()))
-        .setScale(2, HALF_UP);
-    this.tax = unitaryTax.multiply(valueOf(itemRequest.getQuantity()));
+    final BigDecimal unitaryTax = calculateUnitaryTax(product);
+    final BigDecimal unitaryTaxedAmount = calculateUnitaryTaxedAmount(product, unitaryTax);
+    this.taxedAmount = calculateTaxedAmount(itemRequest, unitaryTaxedAmount);
+    this.tax = calculateTax(itemRequest, unitaryTax);
     this.product = product;
     this.quantity = itemRequest.getQuantity();
   }
 
+private BigDecimal calculateUnitaryTaxedAmount(Product product, final BigDecimal unitaryTax) {
+	return product.getPrice().add(unitaryTax).setScale(2, HALF_UP);
+}
+
+private BigDecimal calculateTax(SellItemRequest itemRequest, final BigDecimal unitaryTax) {
+	return unitaryTax.multiply(valueOf(itemRequest.getQuantity()));
+}
+
+private BigDecimal calculateTaxedAmount(SellItemRequest itemRequest, final BigDecimal unitaryTaxedAmount) {
+	return calculateTax(itemRequest, unitaryTaxedAmount)
+        .setScale(2, HALF_UP);
+}
+
+private BigDecimal calculateUnitaryTax(Product product) {
+	return product.getPrice().divide(valueOf(100))
+        .multiply(product.getCategory().getTaxPercentage()).setScale(2, HALF_UP);
+}
+
   public Product getProduct() {
     return product;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
-  }
+  } 
 
   public int getQuantity() {
     return quantity;
-  }
-
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
   }
 
   public BigDecimal getTaxedAmount() {
     return taxedAmount;
   }
 
-  public void setTaxedAmount(BigDecimal taxedAmount) {
-    this.taxedAmount = taxedAmount;
-  }
-
   public BigDecimal getTax() {
     return tax;
   }
 
-  public void setTax(BigDecimal tax) {
-    this.tax = tax;
-  }
 }
