@@ -1,83 +1,84 @@
 package com.kata.telldontask.useCase;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.OrderStatus;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.doubles.TestShipmentService;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class OrderShipmentUseCaseTest {
-    private final TestOrderRepository orderRepository = new TestOrderRepository();
-    private final TestShipmentService shipmentService = new TestShipmentService();
-    private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
-    @Test
-    void shipApprovedOrder() {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.APPROVED);
-        orderRepository.addOrder(initialOrder);
+  private final TestOrderRepository orderRepository = new TestOrderRepository();
+  private final TestShipmentService shipmentService = new TestShipmentService();
+  private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository,
+      shipmentService);
 
-        OrderShipmentRequest request = new OrderShipmentRequest();
-        request.setOrderId(1);
+  @Test
+  void shipApprovedOrder() {
+    Order initialOrder = new Order();
+    initialOrder.setStatus(OrderStatus.APPROVED);
+    orderRepository.addOrder(initialOrder);
 
-        useCase.run(request);
+    OrderShipmentRequest request = new OrderShipmentRequest();
+    request.setOrderId(1);
 
-        assertThat(orderRepository.getSavedOrder().getStatus()).isEqualTo(OrderStatus.SHIPPED);
-        assertThat(shipmentService.getShippedOrder()).isEqualTo(initialOrder);
-    }
+    useCase.run(request);
 
-    @Test
-    void createdOrdersCannotBeShipped() {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.CREATED);
-        orderRepository.addOrder(initialOrder);
+    assertThat(orderRepository.getSavedOrder().getStatus()).isEqualTo(OrderStatus.SHIPPED);
+    assertThat(shipmentService.getShippedOrder()).isEqualTo(initialOrder);
+  }
 
-        OrderShipmentRequest request = new OrderShipmentRequest();
-        request.setOrderId(1);
+  @Test
+  void createdOrdersCannotBeShipped() {
+    Order initialOrder = new Order();
 
-        assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedException.class);
+    initialOrder.setStatus(OrderStatus.CREATED);
+    orderRepository.addOrder(initialOrder);
 
-        assertThat(orderRepository.getSavedOrder()).isNull();
-        assertThat(shipmentService.getShippedOrder()).isNull();
-    }
+    OrderShipmentRequest request = new OrderShipmentRequest();
+    request.setOrderId(1);
 
-    @Test
-    void rejectedOrdersCannotBeShipped() {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.REJECTED);
-        orderRepository.addOrder(initialOrder);
+    assertThatThrownBy(() -> useCase.run(request))
+        .isInstanceOf(OrderCannotBeShippedException.class);
 
-        OrderShipmentRequest request = new OrderShipmentRequest();
-        request.setOrderId(1);
+    assertThat(orderRepository.getSavedOrder()).isNull();
+    assertThat(shipmentService.getShippedOrder()).isNull();
+  }
 
-        assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedException.class);
+  @Test
+  void rejectedOrdersCannotBeShipped() {
+    Order initialOrder = new Order();
 
-        assertThat(orderRepository.getSavedOrder()).isNull();
-        assertThat(shipmentService.getShippedOrder()).isNull();
-    }
+    initialOrder.setStatus(OrderStatus.REJECTED);
+    orderRepository.addOrder(initialOrder);
 
-    @Test
-    public void shippedOrdersCannotBeShippedAgain() {
-        Order initialOrder = new Order();
-        initialOrder.setId(1);
-        initialOrder.setStatus(OrderStatus.SHIPPED);
-        orderRepository.addOrder(initialOrder);
+    OrderShipmentRequest request = new OrderShipmentRequest();
+    request.setOrderId(1);
 
-        OrderShipmentRequest request = new OrderShipmentRequest();
-        request.setOrderId(1);
+    assertThatThrownBy(() -> useCase.run(request))
+        .isInstanceOf(OrderCannotBeShippedException.class);
 
-        assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedTwiceException.class);
+    assertThat(orderRepository.getSavedOrder()).isNull();
+    assertThat(shipmentService.getShippedOrder()).isNull();
+  }
 
-        assertThat(orderRepository.getSavedOrder()).isNull();
-        assertThat(shipmentService.getShippedOrder()).isNull();
-    }
+  @Test
+  public void shippedOrdersCannotBeShippedAgain() {
+    Order initialOrder = new Order();
+
+    initialOrder.setStatus(OrderStatus.SHIPPED);
+    orderRepository.addOrder(initialOrder);
+
+    OrderShipmentRequest request = new OrderShipmentRequest();
+    request.setOrderId(1);
+
+    assertThatThrownBy(() -> useCase.run(request))
+        .isInstanceOf(OrderCannotBeShippedTwiceException.class);
+
+    assertThat(orderRepository.getSavedOrder()).isNull();
+    assertThat(shipmentService.getShippedOrder()).isNull();
+  }
 }
