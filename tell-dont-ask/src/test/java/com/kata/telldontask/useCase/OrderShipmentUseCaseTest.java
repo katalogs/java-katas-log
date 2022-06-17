@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.kata.telldontask.domain.Order;
+import com.kata.telldontask.domain.OrderCannotBeShippedException;
+import com.kata.telldontask.domain.OrderCannotBeShippedTwiceException;
 import com.kata.telldontask.domain.OrderStatus;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.doubles.TestShipmentService;

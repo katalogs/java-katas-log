@@ -2,6 +2,7 @@ package com.kata.telldontask.useCase;
 
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.Product;
+import com.kata.telldontask.domain.UnknownProductException;
 import com.kata.telldontask.repository.OrderRepository;
 import com.kata.telldontask.repository.ProductCatalog;
 

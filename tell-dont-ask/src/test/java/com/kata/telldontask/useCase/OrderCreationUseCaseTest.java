@@ -1,20 +1,20 @@
 package com.kata.telldontask.useCase;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import com.kata.telldontask.domain.Category;
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.OrderStatus;
 import com.kata.telldontask.domain.Product;
+import com.kata.telldontask.domain.UnknownProductException;
 import com.kata.telldontask.doubles.InMemoryProductCatalog;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.repository.ProductCatalog;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.Test;
 
 class OrderCreationUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();

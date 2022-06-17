@@ -3,8 +3,11 @@ package com.kata.telldontask.useCase;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import com.kata.telldontask.domain.ApprovedOrderCannotBeRejectedException;
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.OrderStatus;
+import com.kata.telldontask.domain.RejectedOrderCannotBeApprovedException;
+import com.kata.telldontask.domain.ShippedOrdersCannotBeChangedException;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +17,7 @@ class OrderApprovalUseCaseTest {
   private final OrderApprovalUseCase useCase = new OrderApprovalUseCase(orderRepository);
 
   @Test
-  void approvedExistingOrder() throws Exception {
+  void approvedExistingOrder() {
     Order initialOrder = new Order();
 
     orderRepository.addOrder(initialOrder);
@@ -29,7 +32,7 @@ class OrderApprovalUseCaseTest {
   }
 
   @Test
-  void rejectedExistingOrder() throws Exception {
+  void rejectedExistingOrder() {
     Order initialOrder = new Order();
 
     orderRepository.addOrder(initialOrder);

@@ -1,13 +1,14 @@
 package com.kata.telldontask.domain;
 
-import com.kata.telldontask.useCase.ApprovedOrderCannotBeRejectedException;
-import com.kata.telldontask.useCase.OrderApprovalRequest;
-import com.kata.telldontask.useCase.RejectedOrderCannotBeApprovedException;
+import static com.kata.telldontask.domain.OrderStatus.CREATED;
+import static com.kata.telldontask.domain.OrderStatus.REJECTED;
+import static com.kata.telldontask.domain.OrderStatus.SHIPPED;
+
 import com.kata.telldontask.useCase.SellItemRequest;
-import com.kata.telldontask.useCase.ShippedOrdersCannotBeChangedException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class Order {
 
@@ -70,18 +71,32 @@ public class Order {
     this.setTax(this.getTax().add(orderItem.getTax()));
   }
 
-  public void updateStatus(OrderApprovalRequest request) {
+  public void approve(boolean isApproved) {
     if (status == OrderStatus.SHIPPED) {
       throw new ShippedOrdersCannotBeChangedException();
     }
 
-    if (request.isApproved() && status == OrderStatus.REJECTED) {
+    if (isApproved && status == OrderStatus.REJECTED) {
       throw new RejectedOrderCannotBeApprovedException();
     }
 
-    if (!request.isApproved() && status == OrderStatus.APPROVED) {
+    if (!isApproved && status == OrderStatus.APPROVED) {
       throw new ApprovedOrderCannotBeRejectedException();
     }
-    setStatus(request.isApproved() ? OrderStatus.APPROVED : OrderStatus.REJECTED);
+    setStatus(isApproved ? OrderStatus.APPROVED : OrderStatus.REJECTED);
+  }
+
+  public void ship(Consumer<Order> consumer) {
+    if (getStatus().equals(CREATED) || getStatus().equals(REJECTED)) {
+      throw new OrderCannotBeShippedException();
+    }
+
+    if (getStatus().equals(SHIPPED)) {
+      throw new OrderCannotBeShippedTwiceException();
+    }
+
+    consumer.accept(this);
+
+    setStatus(OrderStatus.SHIPPED);
   }
 }
