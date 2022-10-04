@@ -13,4 +13,8 @@ public class Account {
   public String printBankStatement() {
     return null;
   }
+
+  public int getBalance() {
+    return 1000;
+  }
 }
