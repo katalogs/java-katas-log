@@ -2,23 +2,21 @@ package com.kata.roman;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ArabicToRomanNumeralsConverterTests {
 
-  @Test
-  void shouldConvert1IntoI() {
-    assertThat(ArabicToRomanNumeralsConverter.convert(1)).isEqualTo("I");
+  @ParameterizedTest
+  @CsvSource({"1,I", "2,II", "3,III"})
+  void shouldConvertSuccessiveI(int arabicNumber, String romanNumber) {
+    assertThat(ArabicToRomanNumeralsConverter.convert(arabicNumber)).isEqualTo(romanNumber);
   }
 
-  @Test
-  void shouldConvert2IntoII() {
-    assertThat(ArabicToRomanNumeralsConverter.convert(2)).isEqualTo("II");
-  }
-
-  @Test
-  void shouldConvert3IntoIII() {
-    assertThat(ArabicToRomanNumeralsConverter.convert(3)).isEqualTo("III");
+  @ParameterizedTest
+  @CsvSource({"5,V", "6,VI", "7,VII", "8,VIII"})
+  void shouldConvertSuccessiveV(int arabicNumber, String romanNumber) {
+    assertThat(ArabicToRomanNumeralsConverter.convert(arabicNumber)).isEqualTo(romanNumber);
   }
 
 }
