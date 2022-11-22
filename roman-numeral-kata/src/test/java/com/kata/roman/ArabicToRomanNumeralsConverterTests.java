@@ -19,4 +19,10 @@ class ArabicToRomanNumeralsConverterTests {
     assertThat(ArabicToRomanNumeralsConverter.convert(arabicNumber)).isEqualTo(romanNumber);
   }
 
+  @ParameterizedTest
+  @CsvSource({"10,X", "11,XI", "12,XII", "13,XIII"})
+  void shouldConvertSuccessiveX(int arabicNumber, String romanNumber) {
+    assertThat(ArabicToRomanNumeralsConverter.convert(arabicNumber)).isEqualTo(romanNumber);
+  }
+
 }
