@@ -19,6 +19,7 @@ public class ArabicToRomanNumeralsConverter {
     for (Entry<Integer, String> val : DICO.entrySet()) {
 
       int numerator = arabicNumber / val.getKey();
+
       if (numerator >= 1) {
         result.append(val.getValue().repeat(numerator));
         arabicNumber -= numerator * val.getKey();
@@ -30,9 +31,13 @@ public class ArabicToRomanNumeralsConverter {
 
   private static void initDico() {
     DICO.put(100, "C");
+    DICO.put(90, "XC");
     DICO.put(50, "L");
+    DICO.put(40, "XL");
     DICO.put(10, "X");
+    DICO.put(9, "IX");
     DICO.put(5, "V");
+    DICO.put(4, "IV");
     DICO.put(1, "I");
   }
 }

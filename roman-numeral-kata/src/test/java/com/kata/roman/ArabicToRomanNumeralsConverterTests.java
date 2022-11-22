@@ -40,5 +40,11 @@ class ArabicToRomanNumeralsConverterTests {
     assertThat(sut.convert(arabicNumber)).isEqualTo(romanNumber);
   }
 
+  @ParameterizedTest
+  @CsvSource({"4,IV", "9,IX", "40,XL", "90,XC", "99,XCIX"})
+  void shouldConvertSymbolsWithTwoCharacters(int arabicNumber, String romanNumber){
+    assertThat(sut.convert(arabicNumber)).isEqualTo(romanNumber);
+  }
+
 
 }
