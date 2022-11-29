@@ -1,26 +1,43 @@
 package com.kata.roman;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class ArabicToRomanNumeralsConverter {
 
-  private static final String V = "V";
-  private static final String X = "X";
-  public static final String I = "I";
+  public ArabicToRomanNumeralsConverter() {
+    initDico();
+  }
 
-  static String convert(int arabicNumber) {
-    String result = "";
+  public static final Map<Integer, String> DICO = new LinkedHashMap<>();
 
-    if (arabicNumber >= 1) {
-      result = I + I.repeat(arabicNumber - 1);
+
+  String convert(int arabicNumber) {
+    StringBuilder result = new StringBuilder();
+
+    for (Entry<Integer, String> val : DICO.entrySet()) {
+
+      int numerator = arabicNumber / val.getKey();
+
+      if (numerator >= 1) {
+        result.append(val.getValue().repeat(numerator));
+        arabicNumber -= numerator * val.getKey();
+      }
+
     }
+    return result.toString();
+  }
 
-    if (arabicNumber >= 5) {
-      result = V + I.repeat(arabicNumber - 5);
-    }
-
-    if (arabicNumber >= 10) {
-      result = X + I.repeat(arabicNumber - 10);
-    }
-
-    return result;
+  private static void initDico() {
+    DICO.put(100, "C");
+    DICO.put(90, "XC");
+    DICO.put(50, "L");
+    DICO.put(40, "XL");
+    DICO.put(10, "X");
+    DICO.put(9, "IX");
+    DICO.put(5, "V");
+    DICO.put(4, "IV");
+    DICO.put(1, "I");
   }
 }
