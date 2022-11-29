@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
@@ -12,15 +14,25 @@ class GildedRoseTest {
         Item[] items = new Item[]{new Item("foo", 0, 0)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+        assertEquals("foo", app.items[0].name);
     }
 
     @Test
     void golden() {
-        String[] args = new String[3];
-        //run
+        PrintStream previousConsole = System.out;
+        ByteArrayOutputStream newConsole = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(newConsole));
+
+        // Execute
+        Integer daysCount = 30;
+        String[] args = new String[] {Integer.toString(daysCount)};
         TexttestFixture.main(args);
-        //assert
-        Approvals.verifyAll("", );
+        String mainOutput = newConsole.toString();
+
+        // Assert
+        Approvals.verify(mainOutput);
+
+        // Restore
+        System.setOut(previousConsole);
     }
 }
