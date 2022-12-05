@@ -3,7 +3,9 @@ package com.kata.diamond;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,27 +34,6 @@ class DiamondTests {
     assertThat(diamond).isEqualTo("A");
   }
 
-//  @Test
-//  void should_print_ABBA_when_letter_is_B() {
-//    String diamond = Diamond.print('B');
-//
-//    assertThat(diamond).isEqualTo("ABBA");
-//  }
-//
-//  @Test
-//  void should_print_ABBCCBBA_when_letter_is_C() {
-//    String diamond = Diamond.print('C');
-//
-//    assertThat(diamond).isEqualTo("ABBCCBBA");
-//  }
-//
-//  @Test
-//  void should_print_ABBCCDDCCBBA_when_letter_is_D() {
-//    String diamond = Diamond.print('D');
-//
-//    assertThat(diamond).isEqualTo("ABBCCDDCCBBA");
-//  }
-
   @ParameterizedTest
   @ValueSource(chars = {'A', 'B', 'C'})
   void should_contain_one_A_on_first_and_last_line(char letter) {
@@ -72,8 +53,21 @@ class DiamondTests {
     var subDiamond = Arrays.asList(splitDiamond).subList(1, splitDiamond.length - 1);
     assertThat(subDiamond).allSatisfy(line -> {
       assertThat(line.strip().toCharArray()).hasSize(2);
-      assertThat((int) List.of(line.strip().toCharArray()).stream().distinct().count()).isEqualTo(1);
+      assertThat((int) Stream.of(line.strip().toCharArray()).count()).isEqualTo(1);
     });
+  }
+
+  @ParameterizedTest
+  @ValueSource(chars = {'B', 'C'})
+  void should_be_symmetric_horizontally(char letter) {
+    String diamond = Diamond.print(letter);
+
+    String[] splitDiamond = diamond.split("\n");
+    int middleLine = letter - 'A';
+    var upper = Arrays.asList(splitDiamond).subList(0, middleLine);
+    var lower = Arrays.asList(splitDiamond).subList(middleLine + 1, splitDiamond.length);
+    assertThat(upper.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList())).isEqualTo(lower);
+
   }
 
 }

@@ -28,16 +28,10 @@ public class Diamond {
       }
     }
 
-    List<String> collect = reverse(lines);
+    List<String> collect = lines.stream().sorted(Collections.reverseOrder()).skip(1).collect(Collectors.toList());
     lines.addAll(collect);
 
     return String.join("\n", lines);
-  }
-
-  private static List<String> reverse(List<String> lines) {
-    List<String> reversedLines = new ArrayList<>(List.copyOf(lines));
-    Collections.reverse(reversedLines);
-    return reversedLines.stream().skip(1).collect(Collectors.toList());
   }
 
   private static char toUpperCase(char letter) {
