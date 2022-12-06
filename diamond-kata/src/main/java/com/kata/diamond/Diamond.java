@@ -10,7 +10,7 @@ public class Diamond {
 
   public static String print(char letter) {
 
-    if (letter == 'a') {
+    if (letter >= 'a' && letter <= 'z') {
       letter = toUpperCase(letter);
     }
 

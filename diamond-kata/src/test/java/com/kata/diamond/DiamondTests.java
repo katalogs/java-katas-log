@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import net.jqwik.api.Arbitraries;
+import net.jqwik.api.Arbitrary;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.Provide;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -35,16 +40,6 @@ class DiamondTests {
   }
 
   @ParameterizedTest
-  @ValueSource(chars = {'A', 'B', 'C'})
-  void should_contain_one_A_on_first_and_last_line(char letter) {
-    String diamond = Diamond.print(letter);
-
-    String[] splitDiamond = diamond.split("\n");
-    assertThat(splitDiamond[0].strip()).isEqualTo("A");
-    assertThat(splitDiamond[splitDiamond.length - 1].strip()).isEqualTo("A");
-  }
-
-  @ParameterizedTest
   @ValueSource(chars = {'B', 'C'})
   void should_contain_twice_the_letter_on_every_lines_except_on_first_and_last_line(char letter) {
     String diamond = Diamond.print(letter);
@@ -67,7 +62,18 @@ class DiamondTests {
     var upper = Arrays.asList(splitDiamond).subList(0, middleLine);
     var lower = Arrays.asList(splitDiamond).subList(middleLine + 1, splitDiamond.length);
     assertThat(upper.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList())).isEqualTo(lower);
-
   }
 
+  @Property
+  boolean should_contain_one_A_on_first_and_last_line2(@ForAll("letters") char letter) {
+    String diamond = Diamond.print(letter);
+
+    String[] splitDiamond = diamond.split("\n");
+    return splitDiamond[0].strip().equals("A") && splitDiamond[splitDiamond.length - 1].strip().equals("A");
+  }
+
+  @Provide
+  Arbitrary<Character> letters() {
+    return Arbitraries.chars().alpha();
+  }
 }
