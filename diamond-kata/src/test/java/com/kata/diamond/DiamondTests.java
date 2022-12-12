@@ -85,7 +85,7 @@ class DiamondTests {
   }
 
   @Property
-  boolean should_be_the_same_for_upper_and_lower_case_of_the_same_letter(@ForAll("upperLetters") char letter) {
+  boolean should_be_the_same_for_upper_and_lower_case_of_the_same_letter(@ForAll("upperLettersWithoutA") char letter) {
     return Diamond.print(letter).equals(Diamond.print(toLowerCase(letter)));
   }
 
