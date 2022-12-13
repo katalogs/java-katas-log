@@ -21,10 +21,11 @@ public class Diamond {
     List<String> lines = new ArrayList<>();
 
     for (int i = 0; i <= letter - 'A'; i++) {
+      String spaces = " ".repeat(letter - 'A' - i);
       if (i != 0) {
-        lines.add(String.valueOf((char) ('A' + i)).repeat(2));
+        lines.add(spaces + String.valueOf((char) ('A' + i)).repeat(2));
       } else {
-        lines.add(String.valueOf((char) ('A' + i)));
+        lines.add(spaces + String.valueOf((char) ('A' + i)));
       }
     }
 

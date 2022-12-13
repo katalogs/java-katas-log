@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
@@ -70,8 +72,17 @@ class DiamondTests {
   }
 
   @Property
-  boolean should_contain_decreasing_numer_of_spaces_before_letter(@ForAll @UpperChars char letter) {
-    return false;
+  boolean should_contain_decreasing_number_of_spaces_before_letter(@ForAll @UpperChars char letter) {
+    String diamond = Diamond.print(letter);
+
+    String[] splitDiamond = diamond.split("\n");
+    int middleLine = letter - 'A';
+    var upper = Arrays.asList(splitDiamond).subList(0, middleLine + 1)
+        .stream().map(l -> (int) l.chars().takeWhile(c -> c == (int) ' ').count()).collect(Collectors.toList());
+
+    List<Integer> decreasingNumbers = IntStream.rangeClosed(0, middleLine).boxed().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+
+    return upper.equals(decreasingNumbers);
   }
 
   @Provide
