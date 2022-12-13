@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 
 public class Diamond {
 
-  public static String print(char letter) {
+  public static final char A = 'A';
 
+  public static String print(char letter) {
     if (letter >= 'a' && letter <= 'z') {
       letter = toUpperCase(letter);
     }
@@ -20,16 +21,19 @@ public class Diamond {
 
     List<String> lines = new ArrayList<>();
 
-    for (int i = 0; i <= letter - 'A'; i++) {
-      String spaces = " ".repeat(letter - 'A' - i);
+    for (int i = 0; i <= letter - A; i++) {
+      String spaces = " ".repeat(letter - A - i);
       if (i != 0) {
-        lines.add(spaces + String.valueOf((char) ('A' + i)).repeat(2));
+        lines.add(spaces + String.valueOf((char) (A + i)).repeat(2) + spaces);
       } else {
-        lines.add(spaces + String.valueOf((char) ('A' + i)));
+        lines.add(spaces + String.valueOf((char) (A + i)) + spaces);
       }
     }
 
-    List<String> collect = lines.stream().sorted(Collections.reverseOrder()).skip(1).collect(Collectors.toList());
+    List<String> collect = lines.stream()
+        .sorted(Collections.reverseOrder())
+        .skip(1)
+        .collect(Collectors.toList());
     lines.addAll(collect);
 
     return String.join("\n", lines);
