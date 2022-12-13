@@ -2,6 +2,7 @@ package com.gildedrose;
 
 class GildedRose {
 
+    public static final int MAX_QUALITY = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -11,13 +12,13 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (!item.name.equals("Aged Brie")
-                && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                && !item.name.equals(Item.BACKSTAGE_ITEM)) {
                 decreaseQuality(item);
             } else {
-                if (item.quality < 50) {
+                if (!isNormalMaxQuality(item)) {
                     increaseQuality(item);
 
-                    if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (item.name.equals(Item.BACKSTAGE_ITEM)) {
                         if (item.sellIn < 11) {
                             increaseQuality(item);
                         }
@@ -35,7 +36,7 @@ class GildedRose {
 
             if (item.sellIn < 0) {
                 if (!item.name.equals("Aged Brie")) {
-                    if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    if (!item.name.equals(Item.BACKSTAGE_ITEM)) {
                         decreaseQuality(item);
                     } else {
                         item.quality = 0;
@@ -47,8 +48,12 @@ class GildedRose {
         }
     }
 
+    private boolean isNormalMaxQuality(Item item) {
+        return item.quality > MAX_QUALITY;
+    }
+
     private void increaseQuality(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             item.quality++;
         }
     }

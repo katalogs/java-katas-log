@@ -2,6 +2,7 @@ package com.gildedrose;
 
 public class Item {
 
+    public static final String BACKSTAGE_ITEM = "Backstage passes to a TAFKAL80ETC concert";
     public String name;
 
     public int sellIn;
