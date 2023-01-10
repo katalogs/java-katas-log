@@ -30,7 +30,7 @@ class CollectionsExercises extends PetDomainKata {
     @Test
     void getFirstNamesOfAllPeople() {
         // Replace null, with a transformation method on Seq.
-        Seq<String> firstNames = null;
+        Seq<String> firstNames = people.map(Person::getFirstName);
 
         Seq<String> expectedFirstNames = Vector.of("Mary", "Bob", "Ted", "Jake", "Barry", "Terry", "Harry", "John");
         assertThat(firstNames).isEqualTo(expectedFirstNames);
