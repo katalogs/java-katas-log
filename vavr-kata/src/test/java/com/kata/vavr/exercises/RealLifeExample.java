@@ -30,19 +30,21 @@ class RealLifeExample {
     private final UUID UNKNOWN_USER = UUID.fromString("376510ae-4e7e-11ea-b77f-2e728ce88121");
 
     private final AccountService accountService = new AccountService(
-            new UserService(),
-            new TwitterService(),
-            new BusinessLoggerImpl());
+        new UserService(),
+        new TwitterService(),
+        new BusinessLoggerImpl());
 
     @Test
     void register_BudSpencer_should_return_a_new_tweet_url() {
-        String tweetUrl = accountService.register(BUD_SPENCER);
-        assertThat(tweetUrl).isEqualTo("TweetUrl");
+        Option<String> tweetUrl = accountService.register(BUD_SPENCER);
+        assertThat(tweetUrl.isDefined()).isTrue();
+        assertThat(tweetUrl.get()).isEqualTo("TweetUrl");
     }
 
     @Test
     void register_an_unknown_user_should_return_an_error_message() {
-        String tweetUrl = accountService.register(UNKNOWN_USER);
-        assertThat(tweetUrl).isNull();
+        Option<String> tweetUrl = accountService.register(UNKNOWN_USER);
+        assertThat(tweetUrl.isEmpty()).isTrue();
+        assertThat(tweetUrl.getOrElse((String) null)).isNull();
     }
 }

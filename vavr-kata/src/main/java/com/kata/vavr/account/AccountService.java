@@ -1,5 +1,6 @@
 package com.kata.vavr.account;
 
+import io.vavr.control.Option;
 import lombok.AllArgsConstructor;
 
 import java.util.UUID;
@@ -7,39 +8,43 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountService {
 
-    private final UserService userService;
-    private final TwitterService twitterService;
-    private final BusinessLogger businessLogger;
+  private final UserService userService;
+  private final TwitterService twitterService;
+  private final BusinessLogger businessLogger;
 
-    public String register(UUID id) {
-        try {
-            User user = this.userService.findById(id);
+  public Option<String> register(UUID id) {
+    try {
+      Option<User> user = this.userService.findById(id);
 
-            if (user == null)
-                return null;
+      if (user.isEmpty()) {
+        return Option.none();
+      }
 
-            String accountId = this.twitterService.register(user.getEmail(), user.getName());
+      String accountId = this.twitterService.register(user.get().getEmail(), user.get().getName());
 
-            if (accountId == null)
-                return null;
+      if (accountId == null) {
+        return Option.none();
+      }
 
-            String twitterToken = this.twitterService.authenticate(user.getEmail(), user.getPassword());
+      String twitterToken = this.twitterService.authenticate(user.get().getEmail(), user.get().getPassword());
 
-            if (twitterToken == null)
-                return null;
+      if (twitterToken == null) {
+        return Option.none();
+      }
 
-            String tweetUrl = this.twitterService.tweet(twitterToken, "Hello I am " + user.getName());
+      String tweetUrl = this.twitterService.tweet(twitterToken, "Hello I am " + user.get().getName());
 
-            if (tweetUrl == null)
-                return null;
+      if (tweetUrl == null) {
+        return Option.none();
+      }
 
-            this.userService.updateTwitterAccountId(id, accountId);
-            businessLogger.logSuccessRegister(id);
+      this.userService.updateTwitterAccountId(id, accountId);
+      businessLogger.logSuccessRegister(id);
+      return Option.of(tweetUrl);
 
-            return tweetUrl;
-        } catch (Exception ex) {
-            this.businessLogger.logFailureRegister(id, ex);
-            return null;
-        }
+    } catch (Exception ex) {
+      this.businessLogger.logFailureRegister(id, ex);
+      return null;
     }
+  }
 }
