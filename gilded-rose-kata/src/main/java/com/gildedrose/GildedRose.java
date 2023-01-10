@@ -2,7 +2,6 @@ package com.gildedrose;
 
 class GildedRose {
 
-    public static final int MAX_QUALITY = 50;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -13,18 +12,18 @@ class GildedRose {
         for (Item item : items) {
             if (!item.name.equals("Aged Brie")
                 && !item.name.equals(Item.BACKSTAGE_ITEM)) {
-                decreaseQuality(item);
+                item.decreaseQuality();
             } else {
-                if (!isNormalMaxQuality(item)) {
-                    increaseQuality(item);
+                if (!item.isNormalMaxQuality()) {
+                    item.increaseQuality();
 
                     if (item.name.equals(Item.BACKSTAGE_ITEM)) {
                         if (item.sellIn < 11) {
-                            increaseQuality(item);
+                            item.increaseQuality();
                         }
 
                         if (item.sellIn < 6) {
-                            increaseQuality(item);
+                            item.increaseQuality();
                         }
                     }
                 }
@@ -37,30 +36,16 @@ class GildedRose {
             if (item.sellIn < 0) {
                 if (!item.name.equals("Aged Brie")) {
                     if (!item.name.equals(Item.BACKSTAGE_ITEM)) {
-                        decreaseQuality(item);
+                        item.decreaseQuality();
                     } else {
                         item.quality = 0;
                     }
                 } else {
-                    increaseQuality(item);
+                    item.increaseQuality();
                 }
             }
         }
     }
 
-    private boolean isNormalMaxQuality(Item item) {
-        return item.quality > MAX_QUALITY;
-    }
-
-    private void increaseQuality(Item item) {
-        if (item.quality < MAX_QUALITY) {
-            item.quality++;
-        }
-    }
-    private void decreaseQuality(Item item) {
-        if (item.quality > 0 && !item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            item.quality--;
-        }
-    }
 
 }
