@@ -27,6 +27,12 @@ public class Item {
         }
     }
 
+  public void decreaseQuality() {
+    if (quality > 0) {
+      quality--;
+    }
+  }
+
     public boolean isNormalMaxQuality() {
         return quality > MAX_QUALITY;
     }
