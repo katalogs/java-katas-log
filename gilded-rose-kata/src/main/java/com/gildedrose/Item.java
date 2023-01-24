@@ -26,11 +26,6 @@ public class Item {
             quality++;
         }
     }
-    public void decreaseQuality() {
-        if (quality > 0 && !name.equals("Sulfuras, Hand of Ragnaros")) {
-            quality--;
-        }
-    }
 
     public boolean isNormalMaxQuality() {
         return quality > MAX_QUALITY;
