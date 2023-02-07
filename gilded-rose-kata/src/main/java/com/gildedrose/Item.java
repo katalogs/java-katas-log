@@ -2,30 +2,30 @@ package com.gildedrose;
 
 public class Item {
 
-    public static final int MAX_QUALITY = 50;
-    public static final String BACKSTAGE_ITEM = "Backstage passes to a TAFKAL80ETC concert";
-    public String name;
+  public static final int MAX_QUALITY = 50;
+  public static final String BACKSTAGE_ITEM = "Backstage passes to a TAFKAL80ETC concert";
+  public String name;
 
-    public int sellIn;
+  public int sellIn;
 
-    public int quality;
+  public int quality;
 
-    public Item(String name, int sellIn, int quality) {
-        this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
+  public Item(String name, int sellIn, int quality) {
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+  }
+
+  @Override
+  public String toString() {
+    return this.name + ", " + this.sellIn + ", " + this.quality;
+  }
+
+  public void increaseQuality() {
+    if (quality < MAX_QUALITY) {
+      quality++;
     }
-
-   @Override
-   public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
-    }
-
-    public void increaseQuality() {
-        if (quality < MAX_QUALITY) {
-            quality++;
-        }
-    }
+  }
 
   public void decreaseQuality() {
     if (quality > 0) {
@@ -33,8 +33,41 @@ public class Item {
     }
   }
 
-    public boolean isNormalMaxQuality() {
-        return quality > MAX_QUALITY;
-    }
+  public boolean isNormalMaxQuality() {
+    return quality > MAX_QUALITY;
+  }
 
+  public void updateQuality() {
+    switch (name) {
+      case "Sulfuras, Hand of Ragnaros":
+        break;
+      case Item.BACKSTAGE_ITEM:
+        if (!isNormalMaxQuality()) {
+          increaseQuality();
+
+          if (sellIn < 11) {
+            increaseQuality();
+          }
+
+          if (sellIn < 6) {
+            increaseQuality();
+          }
+        }
+
+        sellIn--;
+
+        if (sellIn < 0) {
+          quality = 0;
+        }
+        break;
+      default:
+        decreaseQuality();
+        sellIn--;
+
+        if (sellIn < 0) {
+          decreaseQuality();
+        }
+        break;
+    }
+  }
 }
