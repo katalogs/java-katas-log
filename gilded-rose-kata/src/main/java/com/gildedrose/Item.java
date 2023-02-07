@@ -3,7 +3,6 @@ package com.gildedrose;
 public class Item {
 
   public static final int MAX_QUALITY = 50;
-  public static final String BACKSTAGE_ITEM = "Backstage passes to a TAFKAL80ETC concert";
   public String name;
 
   public int sellIn;
@@ -38,36 +37,11 @@ public class Item {
   }
 
   public void updateQuality() {
-    switch (name) {
-      case "Sulfuras, Hand of Ragnaros":
-        break;
-      case Item.BACKSTAGE_ITEM:
-        if (!isNormalMaxQuality()) {
-          increaseQuality();
+    decreaseQuality();
+    sellIn--;
 
-          if (sellIn < 11) {
-            increaseQuality();
-          }
-
-          if (sellIn < 6) {
-            increaseQuality();
-          }
-        }
-
-        sellIn--;
-
-        if (sellIn < 0) {
-          quality = 0;
-        }
-        break;
-      default:
-        decreaseQuality();
-        sellIn--;
-
-        if (sellIn < 0) {
-          decreaseQuality();
-        }
-        break;
+    if (sellIn < 0) {
+      decreaseQuality();
     }
   }
 }
