@@ -1,6 +1,9 @@
 package com.kata.telldontask.domain;
 
-import java.math.BigDecimal;
+import com.kata.telldontask.domain.exception.ApprovedOrderCannotBeRejected;
+import com.kata.telldontask.domain.exception.RejectedOrderCannotBeApproved;
+import com.kata.telldontask.domain.exception.ShippedOrdersCannotBeChanged;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,5 +80,25 @@ public class Order {
     items.add(orderItem);
     total = total.add(orderItem.getTaxedAmount());
     tax = tax.add(orderItem.getTax());
+  }
+
+  public void approve() {
+    if (status.equals(OrderStatus.SHIPPED)) {
+      throw new ShippedOrdersCannotBeChanged();
+    }
+    if (status.equals(OrderStatus.REJECTED)) {
+      throw new RejectedOrderCannotBeApproved();
+    }
+    this.status = OrderStatus.APPROVED;
+  }
+
+  public void reject() {
+    if (status.equals(OrderStatus.SHIPPED)) {
+      throw new ShippedOrdersCannotBeChanged();
+    }
+    if (status.equals(OrderStatus.APPROVED)) {
+      throw new ApprovedOrderCannotBeRejected();
+    }
+    this.status = OrderStatus.REJECTED;
   }
 }
