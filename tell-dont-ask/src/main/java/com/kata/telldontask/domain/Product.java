@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Product {
     private String name;
-    private BigDecimal price;
+    private Amount price;
     private Category category;
 
     public String getName() {
@@ -15,12 +15,12 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public Amount getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        this.price = new Amount(price);
     }
 
     public Category getCategory() {
@@ -29,5 +29,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Amount getUnitaryTax() {
+       return price.applyPercentage(category.getTaxPercentage());
+    }
+
+    public Amount getUnitaryTaxedAmount() {
+        return price.add(getUnitaryTax());
     }
 }

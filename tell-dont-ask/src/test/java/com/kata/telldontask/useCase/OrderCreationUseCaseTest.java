@@ -66,12 +66,12 @@ class OrderCreationUseCaseTest {
     assertThat(insertedOrder.getCurrency()).isEqualTo("EUR");
     assertThat(insertedOrder.getItems()).hasSize(2);
     assertThat(insertedOrder.getItems().get(0).getProduct().getName()).isEqualTo("salad");
-    assertThat(insertedOrder.getItems().get(0).getProduct().getPrice()).isEqualTo(new BigDecimal("3.56"));
+    assertThat(insertedOrder.getItems().get(0).getProduct().getPrice()).isEqualTo(new Amount("3.56"));
     assertThat(insertedOrder.getItems().get(0).getQuantity()).isEqualTo(2);
     assertThat(insertedOrder.getItems().get(0).getTaxedAmount()).isEqualTo(new Amount("7.84"));
     assertThat(insertedOrder.getItems().get(0).getTax()).isEqualTo(new Amount("0.72"));
     assertThat(insertedOrder.getItems().get(1).getProduct().getName()).isEqualTo("tomato");
-    assertThat(insertedOrder.getItems().get(1).getProduct().getPrice()).isEqualTo(new BigDecimal("4.65"));
+    assertThat(insertedOrder.getItems().get(1).getProduct().getPrice()).isEqualTo(new Amount("4.65"));
     assertThat(insertedOrder.getItems().get(1).getQuantity()).isEqualTo(3);
     assertThat(insertedOrder.getItems().get(1).getTaxedAmount()).isEqualTo(new Amount("15.36"));
     assertThat(insertedOrder.getItems().get(1).getTax()).isEqualTo(new Amount("1.41"));

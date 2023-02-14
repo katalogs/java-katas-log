@@ -7,44 +7,31 @@ import java.math.BigDecimal;
 
 public class OrderItem {
 
-  private final Product product;
-  private final int quantity;
-  private final Amount taxedAmount;
-  private final Amount tax;
+    private final Product product;
+    private final int quantity;
+    private final Amount taxedAmount;
+    private final Amount tax;
 
-  public OrderItem(Product product, int quantity) {
-    final Amount unitaryTax = new Amount(product
-        .getPrice()
-        .divide(valueOf(100))
-        .multiply(product.getCategory().getTaxPercentage())
-        .setScale(2, HALF_UP));
-    final Amount unitaryTaxedAmount = new Amount(product
-        .getPrice()
-        .add(unitaryTax.value())
-        .setScale(2, HALF_UP));
-    final Amount taxedAmount = unitaryTaxedAmount.multiplyBy(quantity);
-    final Amount taxAmount = unitaryTax.multiplyBy(quantity);
+    public OrderItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+        this.tax = product.getUnitaryTax().multiplyBy(quantity);
+        this.taxedAmount = product.getUnitaryTaxedAmount().multiplyBy(quantity);
+    }
 
+    public Product getProduct() {
+        return product;
+    }
 
-    this.product = product;
-    this.quantity = quantity;
-    this.tax = taxAmount;
-    this.taxedAmount = taxedAmount;
-  }
+    public int getQuantity() {
+        return quantity;
+    }
 
-  public Product getProduct() {
-    return product;
-  }
+    public Amount getTaxedAmount() {
+        return taxedAmount;
+    }
 
-  public int getQuantity() {
-    return quantity;
-  }
-
-  public Amount getTaxedAmount() {
-    return taxedAmount;
-  }
-
-  public Amount getTax() {
-    return tax;
-  }
+    public Amount getTax() {
+        return tax;
+    }
 }

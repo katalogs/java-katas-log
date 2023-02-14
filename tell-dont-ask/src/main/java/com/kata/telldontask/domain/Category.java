@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Category {
     private String name;
-    private BigDecimal taxPercentage;
+    private Percentage taxPercentage;
 
     public String getName() {
         return name;
@@ -14,11 +14,11 @@ public class Category {
         this.name = name;
     }
 
-    public BigDecimal getTaxPercentage() {
+    public Percentage getTaxPercentage() {
         return taxPercentage;
     }
 
     public void setTaxPercentage(BigDecimal taxPercentage) {
-        this.taxPercentage = taxPercentage;
+        this.taxPercentage = new Percentage(taxPercentage.doubleValue());
     }
 }
