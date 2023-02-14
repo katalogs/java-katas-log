@@ -26,8 +26,7 @@ public class OrderItem {
         .add(unitaryTax)
         .setScale(2, HALF_UP);
     final BigDecimal taxedAmount = unitaryTaxedAmount
-        .multiply(valueOf(quantity))
-        .setScale(2, HALF_UP);
+        .multiply(valueOf(quantity));
     final BigDecimal taxAmount = unitaryTax.multiply(valueOf(quantity));
 
     this.product = product;
@@ -51,5 +50,4 @@ public class OrderItem {
   public BigDecimal getTax() {
     return tax;
   }
-
 }
