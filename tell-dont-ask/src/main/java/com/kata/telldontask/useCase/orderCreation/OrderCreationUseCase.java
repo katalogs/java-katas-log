@@ -1,4 +1,4 @@
-package com.kata.telldontask.useCase;
+package com.kata.telldontask.useCase.orderCreation;
 
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.Product;
@@ -20,11 +20,6 @@ public class OrderCreationUseCase {
 
     for (SellItemRequest itemRequest : request.getRequests()) {
       Product product = productCatalog.getByName(itemRequest.getProductName());
-
-      if (product == null) {
-        throw new UnknownProductException();
-      }
-
       order.addItem(product, itemRequest.getQuantity());
     }
 

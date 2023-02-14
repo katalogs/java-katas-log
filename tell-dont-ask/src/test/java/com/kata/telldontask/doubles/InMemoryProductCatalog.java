@@ -2,6 +2,7 @@ package com.kata.telldontask.doubles;
 
 import com.kata.telldontask.domain.Product;
 import com.kata.telldontask.repository.ProductCatalog;
+import com.kata.telldontask.domain.exception.UnknownProduct;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public class InMemoryProductCatalog implements ProductCatalog {
     }
 
     public Product getByName(final String name) {
-        return products.stream().filter(p -> p.getName().equals(name)).findFirst().orElse(null);
+        return products.stream().filter(p -> p.getName().equals(name)).findFirst().orElseThrow(UnknownProduct::new);
     }
 }

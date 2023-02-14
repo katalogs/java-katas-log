@@ -3,16 +3,18 @@ package com.kata.telldontask.useCase;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.kata.telldontask.domain.Category;
-import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.domain.OrderStatus;
-import com.kata.telldontask.domain.Product;
+import com.kata.telldontask.domain.*;
+import com.kata.telldontask.domain.exception.UnknownProduct;
 import com.kata.telldontask.doubles.InMemoryProductCatalog;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.repository.ProductCatalog;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import com.kata.telldontask.useCase.orderCreation.OrderCreationUseCase;
+import com.kata.telldontask.useCase.orderCreation.SellItemRequest;
+import com.kata.telldontask.useCase.orderCreation.SellItemsRequest;
 import org.junit.jupiter.api.Test;
 
 class OrderCreationUseCaseTest {
@@ -84,7 +86,7 @@ class OrderCreationUseCaseTest {
     request.getRequests().add(unknownProductRequest);
 
     assertThatThrownBy(() -> useCase.run(request))
-        .isInstanceOf(UnknownProductException.class);
+        .isInstanceOf(UnknownProduct.class);
   }
     
 }

@@ -1,4 +1,4 @@
-package com.kata.telldontask.useCase;
+package com.kata.telldontask.useCase.orderCreation;
 
 import java.util.List;
 

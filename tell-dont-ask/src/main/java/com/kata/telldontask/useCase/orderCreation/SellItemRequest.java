@@ -1,4 +1,4 @@
-package com.kata.telldontask.useCase;
+package com.kata.telldontask.useCase.orderCreation;
 
 public class SellItemRequest {
     private int quantity;
