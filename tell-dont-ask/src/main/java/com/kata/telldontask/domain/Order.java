@@ -9,7 +9,7 @@ public class Order {
   private BigDecimal total;
   private String currency;
   private List<OrderItem> items;
-  private BigDecimal tax;
+  private Amount tax;
   private OrderStatus status;
   private int id;
 
@@ -19,7 +19,7 @@ public class Order {
     order.setItems(new ArrayList<>());
     order.setCurrency(currency);
     order.setTotal(new BigDecimal("0.00"));
-    order.setTax(new BigDecimal("0.00"));
+    order.setTax(new Amount(0.00));
     return order;
   }
 
@@ -47,11 +47,11 @@ public class Order {
     this.items = items;
   }
 
-  public BigDecimal getTax() {
+  public Amount getTax() {
     return tax;
   }
 
-  public void setTax(BigDecimal tax) {
+  public void setTax(Amount tax) {
     this.tax = tax;
   }
 

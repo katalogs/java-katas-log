@@ -10,10 +10,7 @@ public class OrderItem {
   private Product product;
   private int quantity;
   private BigDecimal taxedAmount;
-  private BigDecimal tax;
-
-  public OrderItem() {
-  }
+  private Amount tax;
 
   public OrderItem(Product product, int quantity) {
     final BigDecimal unitaryTax = product
@@ -27,7 +24,8 @@ public class OrderItem {
         .setScale(2, HALF_UP);
     final BigDecimal taxedAmount = unitaryTaxedAmount
         .multiply(valueOf(quantity));
-    final BigDecimal taxAmount = unitaryTax.multiply(valueOf(quantity));
+    final Amount taxAmount = new Amount(unitaryTax.multiply(valueOf(quantity)));
+
 
     this.product = product;
     this.quantity = quantity;
@@ -47,7 +45,7 @@ public class OrderItem {
     return taxedAmount;
   }
 
-  public BigDecimal getTax() {
+  public Amount getTax() {
     return tax;
   }
 }

@@ -12,7 +12,7 @@ public class Amount {
     this.amount = BigDecimal.valueOf(amount);
   }
 
-  private Amount(BigDecimal amount) {
+  public Amount(BigDecimal amount) {
     this.amount = amount;
   }
 
@@ -48,5 +48,9 @@ public class Amount {
   @Override
   public int hashCode() {
     return Objects.hash(amount);
+  }
+
+  public BigDecimal value() {
+    return amount.setScale(2, RoundingMode.HALF_UP);
   }
 }
