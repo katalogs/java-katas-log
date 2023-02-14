@@ -1,42 +1,55 @@
 package com.kata.telldontask.domain;
 
+import static java.math.BigDecimal.valueOf;
+import static java.math.RoundingMode.HALF_UP;
+
 import java.math.BigDecimal;
 
 public class OrderItem {
-    private Product product;
-    private int quantity;
-    private BigDecimal taxedAmount;
-    private BigDecimal tax;
 
-    public Product getProduct() {
-        return product;
-    }
+  private Product product;
+  private int quantity;
+  private BigDecimal taxedAmount;
+  private BigDecimal tax;
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+  public OrderItem() {
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public OrderItem(Product product, int quantity) {
+    final BigDecimal unitaryTax = product
+        .getPrice()
+        .divide(valueOf(100))
+        .multiply(product.getCategory().getTaxPercentage())
+        .setScale(2, HALF_UP);
+    final BigDecimal unitaryTaxedAmount = product
+        .getPrice()
+        .add(unitaryTax)
+        .setScale(2, HALF_UP);
+    final BigDecimal taxedAmount = unitaryTaxedAmount
+        .multiply(valueOf(quantity))
+        .setScale(2, HALF_UP);
+    final BigDecimal taxAmount = unitaryTax.multiply(valueOf(quantity));
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    this.product = product;
+    this.quantity = quantity;
+    this.tax = taxAmount;
+    this.taxedAmount = taxedAmount;
+  }
 
-    public BigDecimal getTaxedAmount() {
-        return taxedAmount;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public void setTaxedAmount(BigDecimal taxedAmount) {
-        this.taxedAmount = taxedAmount;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public BigDecimal getTax() {
-        return tax;
-    }
+  public BigDecimal getTaxedAmount() {
+    return taxedAmount;
+  }
 
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
-    }
+  public BigDecimal getTax() {
+    return tax;
+  }
+
 }
