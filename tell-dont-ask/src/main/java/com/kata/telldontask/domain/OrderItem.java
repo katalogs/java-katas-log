@@ -9,7 +9,7 @@ public class OrderItem {
 
   private Product product;
   private int quantity;
-  private BigDecimal taxedAmount;
+  private Amount taxedAmount;
   private Amount tax;
 
   public OrderItem(Product product, int quantity) {
@@ -22,8 +22,7 @@ public class OrderItem {
         .getPrice()
         .add(unitaryTax)
         .setScale(2, HALF_UP);
-    final BigDecimal taxedAmount = unitaryTaxedAmount
-        .multiply(valueOf(quantity));
+    final Amount taxedAmount = new Amount(unitaryTaxedAmount.multiply(valueOf(quantity)));
     final Amount taxAmount = new Amount(unitaryTax.multiply(valueOf(quantity)));
 
 
@@ -41,7 +40,7 @@ public class OrderItem {
     return quantity;
   }
 
-  public BigDecimal getTaxedAmount() {
+  public Amount getTaxedAmount() {
     return taxedAmount;
   }
 

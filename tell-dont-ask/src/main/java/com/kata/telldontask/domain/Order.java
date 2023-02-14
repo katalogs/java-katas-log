@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Order {
 
-  private BigDecimal total;
+  private Amount total;
   private String currency;
   private List<OrderItem> items;
   private Amount tax;
@@ -18,16 +18,16 @@ public class Order {
     order.setStatus(OrderStatus.CREATED);
     order.setItems(new ArrayList<>());
     order.setCurrency(currency);
-    order.setTotal(new BigDecimal("0.00"));
+    order.setTotal(new Amount(0.00));
     order.setTax(new Amount(0.00));
     return order;
   }
 
-  public BigDecimal getTotal() {
+  public Amount getTotal() {
     return total;
   }
 
-  public void setTotal(BigDecimal total) {
+  public void setTotal(Amount total) {
     this.total = total;
   }
 

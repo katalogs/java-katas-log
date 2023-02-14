@@ -16,6 +16,11 @@ public class Amount {
     this.amount = amount;
   }
 
+  public Amount(String amount) {
+    this.amount = new BigDecimal(amount);
+
+  }
+
   public Amount multiplyBy(int multiplier) {
     return new Amount(amount.multiply(BigDecimal.valueOf(multiplier)));
   }
