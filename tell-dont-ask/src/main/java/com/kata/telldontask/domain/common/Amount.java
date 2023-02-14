@@ -1,4 +1,4 @@
-package com.kata.telldontask.domain;
+package com.kata.telldontask.domain.common;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,7 +18,6 @@ public class Amount {
 
   public Amount(String amount) {
     this.amount = new BigDecimal(amount);
-
   }
 
   public Amount multiplyBy(int multiplier) {

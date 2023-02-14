@@ -1,4 +1,4 @@
-package com.kata.telldontask.repository;
+package com.kata.telldontask.domain.repository;
 
 import com.kata.telldontask.domain.Order;
 

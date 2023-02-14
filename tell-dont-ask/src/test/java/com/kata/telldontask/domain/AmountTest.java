@@ -2,6 +2,8 @@ package com.kata.telldontask.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.common.Percentage;
 import org.junit.jupiter.api.Test;
 
 class AmountTest {

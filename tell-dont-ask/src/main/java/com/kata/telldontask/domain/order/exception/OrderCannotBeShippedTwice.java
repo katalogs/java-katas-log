@@ -1,4 +1,4 @@
-package com.kata.telldontask.domain.exception;
+package com.kata.telldontask.domain.order.exception;
 
 public class OrderCannotBeShippedTwice extends RuntimeException {
 }

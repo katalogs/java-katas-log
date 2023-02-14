@@ -4,10 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.kata.telldontask.domain.*;
-import com.kata.telldontask.domain.exception.UnknownProduct;
+import com.kata.telldontask.domain.order.exception.UnknownProduct;
+import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.product.Category;
+import com.kata.telldontask.domain.order.OrderStatus;
+import com.kata.telldontask.domain.Product;
 import com.kata.telldontask.doubles.InMemoryProductCatalog;
 import com.kata.telldontask.doubles.TestOrderRepository;
-import com.kata.telldontask.repository.ProductCatalog;
+import com.kata.telldontask.domain.repository.ProductCatalog;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;

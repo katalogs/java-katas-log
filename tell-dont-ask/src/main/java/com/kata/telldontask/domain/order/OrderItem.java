@@ -1,9 +1,9 @@
-package com.kata.telldontask.domain;
+package com.kata.telldontask.domain.order;
+
+import com.kata.telldontask.domain.Product;
+import com.kata.telldontask.domain.common.Amount;
 
 import static java.math.BigDecimal.valueOf;
-import static java.math.RoundingMode.HALF_UP;
-
-import java.math.BigDecimal;
 
 public class OrderItem {
 

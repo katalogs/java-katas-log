@@ -1,10 +1,10 @@
 package com.kata.telldontask.useCase;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.domain.OrderStatus;
-import com.kata.telldontask.domain.exception.ApprovedOrderCannotBeRejected;
-import com.kata.telldontask.domain.exception.RejectedOrderCannotBeApproved;
-import com.kata.telldontask.domain.exception.ShippedOrdersCannotBeChanged;
+import com.kata.telldontask.domain.order.OrderStatus;
+import com.kata.telldontask.domain.order.exception.ApprovedOrderCannotBeRejected;
+import com.kata.telldontask.domain.order.exception.RejectedOrderCannotBeApproved;
+import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.useCase.orderApproval.OrderApprovalRequest;
 import com.kata.telldontask.useCase.orderApproval.OrderApprovalUseCase;

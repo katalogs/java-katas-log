@@ -1,7 +1,7 @@
 package com.kata.telldontask.doubles;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.repository.OrderRepository;
+import com.kata.telldontask.domain.repository.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;

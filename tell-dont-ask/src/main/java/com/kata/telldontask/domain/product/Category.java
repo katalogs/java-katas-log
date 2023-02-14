@@ -1,4 +1,6 @@
-package com.kata.telldontask.domain;
+package com.kata.telldontask.domain.product;
+
+import com.kata.telldontask.domain.common.Percentage;
 
 import java.math.BigDecimal;
 

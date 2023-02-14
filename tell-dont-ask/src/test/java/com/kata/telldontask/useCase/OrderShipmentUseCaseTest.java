@@ -1,11 +1,13 @@
 package com.kata.telldontask.useCase;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.domain.OrderStatus;
-import com.kata.telldontask.domain.exception.OrderCannotBeShipped;
-import com.kata.telldontask.domain.exception.OrderCannotBeShippedTwice;
+import com.kata.telldontask.domain.order.OrderStatus;
+import com.kata.telldontask.domain.order.exception.OrderCannotBeShipped;
+import com.kata.telldontask.domain.order.exception.OrderCannotBeShippedTwice;
 import com.kata.telldontask.doubles.TestOrderRepository;
-import com.kata.telldontask.doubles.TestShipmentService;
+import com.kata.telldontask.doubles.TestOrderShipment;
+import com.kata.telldontask.useCase.orderShipment.OrderShipmentRequest;
+import com.kata.telldontask.useCase.orderShipment.OrderShipmentUseCase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class OrderShipmentUseCaseTest {
     private final TestOrderRepository orderRepository = new TestOrderRepository();
-    private final TestShipmentService shipmentService = new TestShipmentService();
+    private final TestOrderShipment shipmentService = new TestOrderShipment(orderRepository);
     private final OrderShipmentUseCase useCase = new OrderShipmentUseCase(orderRepository, shipmentService);
 
     @Test

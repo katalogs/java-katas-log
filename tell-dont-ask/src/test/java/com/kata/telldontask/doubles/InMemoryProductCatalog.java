@@ -1,8 +1,8 @@
 package com.kata.telldontask.doubles;
 
 import com.kata.telldontask.domain.Product;
-import com.kata.telldontask.repository.ProductCatalog;
-import com.kata.telldontask.domain.exception.UnknownProduct;
+import com.kata.telldontask.domain.repository.ProductCatalog;
+import com.kata.telldontask.domain.order.exception.UnknownProduct;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.kata.telldontask.useCase.orderCreation;
 
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.Product;
-import com.kata.telldontask.repository.OrderRepository;
-import com.kata.telldontask.repository.ProductCatalog;
+import com.kata.telldontask.domain.repository.OrderRepository;
+import com.kata.telldontask.domain.repository.ProductCatalog;
 
 public class OrderCreationUseCase {
 

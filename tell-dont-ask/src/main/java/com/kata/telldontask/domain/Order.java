@@ -1,5 +1,8 @@
 package com.kata.telldontask.domain;
 
+import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.order.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,4 +94,9 @@ public class Order {
   }
 
 
+  public void ship() {
+    OrderAssertion.assertNotCreatedOrRejected(this);
+    OrderAssertion.assertNotAlreadyShipped(this);
+    this.status = OrderStatus.SHIPPED;
+  }
 }

@@ -1,5 +1,8 @@
 package com.kata.telldontask.domain;
 
+import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.product.Category;
+
 import java.math.BigDecimal;
 
 public class Product {

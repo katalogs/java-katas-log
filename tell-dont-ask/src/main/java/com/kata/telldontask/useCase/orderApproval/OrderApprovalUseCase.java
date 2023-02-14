@@ -1,7 +1,7 @@
 package com.kata.telldontask.useCase.orderApproval;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.repository.OrderRepository;
+import com.kata.telldontask.domain.repository.OrderRepository;
 
 public class OrderApprovalUseCase {
     private final OrderRepository orderRepository;
