@@ -1,4 +1,4 @@
-package com.kata.telldontask.useCase;
+package com.kata.telldontask.useCase.orderApproval;
 
 public class OrderApprovalRequest {
     private int orderId;

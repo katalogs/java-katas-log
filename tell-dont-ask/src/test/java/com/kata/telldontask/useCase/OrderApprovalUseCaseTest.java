@@ -2,7 +2,12 @@ package com.kata.telldontask.useCase;
 
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.OrderStatus;
+import com.kata.telldontask.domain.exception.ApprovedOrderCannotBeRejected;
+import com.kata.telldontask.domain.exception.RejectedOrderCannotBeApproved;
+import com.kata.telldontask.domain.exception.ShippedOrdersCannotBeChanged;
 import com.kata.telldontask.doubles.TestOrderRepository;
+import com.kata.telldontask.useCase.orderApproval.OrderApprovalRequest;
+import com.kata.telldontask.useCase.orderApproval.OrderApprovalUseCase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -60,7 +65,7 @@ class OrderApprovalUseCaseTest {
         request.setApproved(true);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(RejectedOrderCannotBeApprovedException.class);
+                .isInstanceOf(RejectedOrderCannotBeApproved.class);
 
         assertThat(orderRepository.getSavedOrder())
                 .isNull();
@@ -78,7 +83,7 @@ class OrderApprovalUseCaseTest {
         request.setApproved(false);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(ApprovedOrderCannotBeRejectedException.class);
+                .isInstanceOf(ApprovedOrderCannotBeRejected.class);
 
         assertThat(orderRepository.getSavedOrder())
                 .isNull();
@@ -96,7 +101,7 @@ class OrderApprovalUseCaseTest {
         request.setApproved(true);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(ShippedOrdersCannotBeChangedException.class);
+                .isInstanceOf(ShippedOrdersCannotBeChanged.class);
 
         assertThat(orderRepository.getSavedOrder())
                 .isNull();
@@ -114,7 +119,7 @@ class OrderApprovalUseCaseTest {
         request.setApproved(false);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(ShippedOrdersCannotBeChangedException.class);
+                .isInstanceOf(ShippedOrdersCannotBeChanged.class);
 
         assertThat(orderRepository.getSavedOrder())
                 .isNull();

@@ -2,6 +2,8 @@ package com.kata.telldontask.useCase;
 
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.OrderStatus;
+import com.kata.telldontask.domain.exception.OrderCannotBeShipped;
+import com.kata.telldontask.domain.exception.OrderCannotBeShippedTwice;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.doubles.TestShipmentService;
 import org.junit.jupiter.api.Test;
@@ -41,7 +43,7 @@ class OrderShipmentUseCaseTest {
         request.setOrderId(1);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedException.class);
+                .isInstanceOf(OrderCannotBeShipped.class);
 
         assertThat(orderRepository.getSavedOrder()).isNull();
         assertThat(shipmentService.getShippedOrder()).isNull();
@@ -58,7 +60,7 @@ class OrderShipmentUseCaseTest {
         request.setOrderId(1);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedException.class);
+                .isInstanceOf(OrderCannotBeShipped.class);
 
         assertThat(orderRepository.getSavedOrder()).isNull();
         assertThat(shipmentService.getShippedOrder()).isNull();
@@ -75,7 +77,7 @@ class OrderShipmentUseCaseTest {
         request.setOrderId(1);
 
         assertThatThrownBy(() -> useCase.run(request))
-                .isInstanceOf(OrderCannotBeShippedTwiceException.class);
+                .isInstanceOf(OrderCannotBeShippedTwice.class);
 
         assertThat(orderRepository.getSavedOrder()).isNull();
         assertThat(shipmentService.getShippedOrder()).isNull();
