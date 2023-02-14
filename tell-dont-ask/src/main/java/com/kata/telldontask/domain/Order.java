@@ -1,9 +1,5 @@
 package com.kata.telldontask.domain;
 
-import com.kata.telldontask.domain.exception.ApprovedOrderCannotBeRejected;
-import com.kata.telldontask.domain.exception.RejectedOrderCannotBeApproved;
-import com.kata.telldontask.domain.exception.ShippedOrdersCannotBeChanged;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,22 +79,16 @@ public class Order {
   }
 
   public void approve() {
-    if (status.equals(OrderStatus.SHIPPED)) {
-      throw new ShippedOrdersCannotBeChanged();
-    }
-    if (status.equals(OrderStatus.REJECTED)) {
-      throw new RejectedOrderCannotBeApproved();
-    }
+    OrderAssertion.assertNotShipped(this);
+    OrderAssertion.assertNotRejected(this);
     this.status = OrderStatus.APPROVED;
   }
 
   public void reject() {
-    if (status.equals(OrderStatus.SHIPPED)) {
-      throw new ShippedOrdersCannotBeChanged();
-    }
-    if (status.equals(OrderStatus.APPROVED)) {
-      throw new ApprovedOrderCannotBeRejected();
-    }
+    OrderAssertion.assertNotShipped(this);
+    OrderAssertion.assertNotApproved(this);
     this.status = OrderStatus.REJECTED;
   }
+
+
 }
