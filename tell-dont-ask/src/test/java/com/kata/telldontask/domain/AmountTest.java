@@ -10,5 +10,4 @@ class AmountTest {
 
     Amount multipliedAmount = amount.multiplyBy(3);
   }
-
 }
