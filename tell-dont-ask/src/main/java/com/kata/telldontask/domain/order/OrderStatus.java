@@ -1,8 +1,5 @@
 package com.kata.telldontask.domain.order;
 
-import com.kata.telldontask.domain.order.exception.ApprovedOrderCannotBeRejected;
-import com.kata.telldontask.domain.order.exception.RejectedOrderCannotBeApproved;
-import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
 import com.kata.telldontask.domain.order.status.OrderApproved;
 import com.kata.telldontask.domain.order.status.OrderCreated;
 import com.kata.telldontask.domain.order.status.OrderRejected;
@@ -25,24 +22,9 @@ public abstract class OrderStatus {
     }
   }
 
-  public OrderStatus approve() {
-    if (this instanceof OrderShipped) {
-      throw new ShippedOrdersCannotBeChanged();
-    }
-    if (this instanceof OrderRejected) {
-      throw new RejectedOrderCannotBeApproved();
-    }
-    return new OrderApproved();
-  }
+  public abstract OrderStatus approve();
 
+  public abstract OrderStatus reject();
 
-  public OrderStatus reject() {
-    if (this instanceof OrderShipped) {
-      throw new ShippedOrdersCannotBeChanged();
-    }
-    if (this instanceof OrderApproved) {
-      throw new ApprovedOrderCannotBeRejected();
-    }
-    return new OrderRejected();
-  }
+  public abstract OrderStatus ship();
 }

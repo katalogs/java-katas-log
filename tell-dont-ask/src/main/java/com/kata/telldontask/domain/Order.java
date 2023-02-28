@@ -96,8 +96,6 @@ public class Order {
   }
   
   public void ship() {
-    OrderAssertion.assertNotCreatedOrRejected(this);
-    OrderAssertion.assertNotAlreadyShipped(this);
-    this.status = OrderStatus.create(OrderStatusEnum.SHIPPED);
+    this.status = this.status.ship();
   }
 }
