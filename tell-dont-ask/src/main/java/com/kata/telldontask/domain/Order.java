@@ -1,8 +1,10 @@
 package com.kata.telldontask.domain;
 
 import com.kata.telldontask.domain.common.Amount;
-import com.kata.telldontask.domain.order.*;
-
+import com.kata.telldontask.domain.order.OrderAssertion;
+import com.kata.telldontask.domain.order.OrderItem;
+import com.kata.telldontask.domain.order.OrderStatus;
+import com.kata.telldontask.domain.order.OrderStatusEnum;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Order {
 
   public static Order create(String currency) {
     Order order = new Order();
-    order.setStatus(OrderStatus.CREATED);
+    order.setStatus(OrderStatusEnum.CREATED);
     order.setItems(new ArrayList<>());
     order.setCurrency(currency);
     order.setTotal(new Amount(0.00));
@@ -57,12 +59,16 @@ public class Order {
     this.tax = tax;
   }
 
-  public OrderStatus getStatus() {
-    return status;
+  public OrderStatusEnum getStatus() {
+    return status.getStatus();
   }
 
-  public void setStatus(OrderStatus status) {
-    this.status = status;
+  public OrderStatusEnum getOrderStatus() {
+    return status.getStatus();
+  }
+
+  public void setStatus(OrderStatusEnum status) {
+    this.status = OrderStatus.create(status);
   }
 
   public int getId() {
@@ -82,21 +88,16 @@ public class Order {
   }
 
   public void approve() {
-    OrderAssertion.assertNotShipped(this);
-    OrderAssertion.assertNotRejected(this);
-    this.status = OrderStatus.APPROVED;
+    this.status = this.status.approve();
   }
 
   public void reject() {
-    OrderAssertion.assertNotShipped(this);
-    OrderAssertion.assertNotApproved(this);
-    this.status = OrderStatus.REJECTED;
+    this.status = this.status.reject();
   }
-
-
+  
   public void ship() {
     OrderAssertion.assertNotCreatedOrRejected(this);
     OrderAssertion.assertNotAlreadyShipped(this);
-    this.status = OrderStatus.SHIPPED;
+    this.status = OrderStatus.create(OrderStatusEnum.SHIPPED);
   }
 }

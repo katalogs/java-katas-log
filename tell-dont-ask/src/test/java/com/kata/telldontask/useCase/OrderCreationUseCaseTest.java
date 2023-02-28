@@ -3,22 +3,21 @@ package com.kata.telldontask.useCase;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.kata.telldontask.domain.*;
-import com.kata.telldontask.domain.order.exception.UnknownProduct;
-import com.kata.telldontask.domain.common.Amount;
-import com.kata.telldontask.domain.product.Category;
-import com.kata.telldontask.domain.order.OrderStatus;
+import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.Product;
+import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.order.OrderStatusEnum;
+import com.kata.telldontask.domain.order.exception.UnknownProduct;
+import com.kata.telldontask.domain.product.Category;
+import com.kata.telldontask.domain.repository.ProductCatalog;
 import com.kata.telldontask.doubles.InMemoryProductCatalog;
 import com.kata.telldontask.doubles.TestOrderRepository;
-import com.kata.telldontask.domain.repository.ProductCatalog;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.kata.telldontask.useCase.orderCreation.OrderCreationUseCase;
 import com.kata.telldontask.useCase.orderCreation.SellItemRequest;
 import com.kata.telldontask.useCase.orderCreation.SellItemsRequest;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 class OrderCreationUseCaseTest {
@@ -64,7 +63,7 @@ class OrderCreationUseCaseTest {
 
     final Order insertedOrder = orderRepository.getSavedOrder();
 
-    assertThat(insertedOrder.getStatus()).isEqualTo(OrderStatus.CREATED);
+    assertThat(insertedOrder.getOrderStatus()).isEqualTo(OrderStatusEnum.CREATED);
     assertThat(insertedOrder.getTotal()).isEqualTo(new Amount("23.20"));
     assertThat(insertedOrder.getTax()).isEqualTo(new Amount("2.13"));
     assertThat(insertedOrder.getCurrency()).isEqualTo("EUR");
@@ -92,5 +91,5 @@ class OrderCreationUseCaseTest {
     assertThatThrownBy(() -> useCase.run(request))
         .isInstanceOf(UnknownProduct.class);
   }
-    
+
 }
