@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.ApprovedOrderCannotBeRejected;
 import com.kata.telldontask.domain.order.exception.RejectedOrderCannotBeApproved;
 import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
@@ -55,8 +54,8 @@ class OrderApprovalUseCaseTest {
   @Test
   void cannotApproveRejectedOrder() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.REJECTED);
     initialOrder.setId(1);
+    initialOrder.reject();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();
@@ -73,8 +72,8 @@ class OrderApprovalUseCaseTest {
   @Test
   void cannotRejectApprovedOrder() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.APPROVED);
     initialOrder.setId(1);
+    initialOrder.approve();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();
@@ -91,8 +90,9 @@ class OrderApprovalUseCaseTest {
   @Test
   void shippedOrdersCannotBeApproved() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.SHIPPED);
     initialOrder.setId(1);
+    initialOrder.approve();
+    initialOrder.ship();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();
@@ -109,8 +109,9 @@ class OrderApprovalUseCaseTest {
   @Test
   void shippedOrdersCannotBeRejected() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.SHIPPED);
     initialOrder.setId(1);
+    initialOrder.approve();
+    initialOrder.ship();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();

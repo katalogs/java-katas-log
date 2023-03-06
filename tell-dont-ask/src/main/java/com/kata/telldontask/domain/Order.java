@@ -3,7 +3,6 @@ package com.kata.telldontask.domain;
 import com.kata.telldontask.domain.common.Amount;
 import com.kata.telldontask.domain.order.OrderItem;
 import com.kata.telldontask.domain.order.OrderStatus;
-import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.status.OrderCreated;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,16 +64,8 @@ public class Order {
     this.tax = tax;
   }
 
-  public OrderStatusEnum getOrderStatus() {
-    return status.getStatus();
-  }
-
   public OrderStatus getStatus() {
     return status;
-  }
-
-  public void setStatus(OrderStatusEnum status) {
-    this.status = OrderStatus.create(status);
   }
 
   public int getId() {

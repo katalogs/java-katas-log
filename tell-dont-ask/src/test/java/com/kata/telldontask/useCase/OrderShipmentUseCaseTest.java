@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.kata.telldontask.domain.Order;
-import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShipped;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShippedTwice;
 import com.kata.telldontask.domain.order.status.OrderShipped;
@@ -24,7 +23,7 @@ class OrderShipmentUseCaseTest {
   void shipApprovedOrder() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.setStatus(OrderStatusEnum.APPROVED);
+    initialOrder.approve();
     orderRepository.addOrder(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
@@ -40,7 +39,6 @@ class OrderShipmentUseCaseTest {
   void createdOrdersCannotBeShipped() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.setStatus(OrderStatusEnum.CREATED);
     orderRepository.addOrder(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
@@ -57,7 +55,7 @@ class OrderShipmentUseCaseTest {
   void rejectedOrdersCannotBeShipped() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.setStatus(OrderStatusEnum.REJECTED);
+    initialOrder.reject();
     orderRepository.addOrder(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
@@ -71,10 +69,11 @@ class OrderShipmentUseCaseTest {
   }
 
   @Test
-  public void shippedOrdersCannotBeShippedAgain() {
+  void shippedOrdersCannotBeShippedAgain() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.setStatus(OrderStatusEnum.SHIPPED);
+    initialOrder.approve();
+    initialOrder.ship();
     orderRepository.addOrder(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
