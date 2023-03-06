@@ -2,13 +2,7 @@ package com.kata.telldontask.domain.order;
 
 import java.util.Objects;
 
-public abstract class OrderStatus {
-
-  public abstract OrderStatus approve();
-
-  public abstract OrderStatus reject();
-
-  public abstract OrderStatus ship();
+public abstract class OrderStatus implements IOrderStatus {
 
   @Override
   public int hashCode() {

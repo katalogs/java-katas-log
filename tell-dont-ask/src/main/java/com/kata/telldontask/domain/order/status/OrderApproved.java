@@ -1,5 +1,6 @@
 package com.kata.telldontask.domain.order.status;
 
+import com.kata.telldontask.domain.order.IOrderStatus;
 import com.kata.telldontask.domain.order.OrderStatus;
 import com.kata.telldontask.domain.order.exception.ApprovedOrderCannotBeRejected;
 
@@ -7,17 +8,17 @@ public class OrderApproved extends OrderStatus {
 
   // TODO: Approve already approved ?
   @Override
-  public OrderStatus approve() {
+  public IOrderStatus approve() {
     return new OrderApproved();
   }
 
   @Override
-  public OrderStatus reject() {
+  public IOrderStatus reject() {
     throw new ApprovedOrderCannotBeRejected();
   }
 
   @Override
-  public OrderStatus ship() {
+  public IOrderStatus ship() {
     return new OrderShipped();
   }
 }

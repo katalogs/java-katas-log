@@ -1,19 +1,19 @@
 package com.kata.telldontask.domain;
 
 import com.kata.telldontask.domain.common.Amount;
+import com.kata.telldontask.domain.order.IOrderStatus;
 import com.kata.telldontask.domain.order.OrderItem;
-import com.kata.telldontask.domain.order.OrderStatus;
 import com.kata.telldontask.domain.order.status.OrderCreated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class Order implements IOrderStatus {
 
   private Amount total;
   private String currency;
   private List<OrderItem> items;
   private Amount tax;
-  private OrderStatus status;
+  private IOrderStatus status;
   private int id;
 
   public static Order create(String currency) {
@@ -64,7 +64,7 @@ public class Order {
     this.tax = tax;
   }
 
-  public OrderStatus getStatus() {
+  public IOrderStatus getStatus() {
     return status;
   }
 
@@ -84,15 +84,18 @@ public class Order {
     tax = tax.add(orderItem.getTax());
   }
 
-  public void approve() {
+  public IOrderStatus approve() {
     this.status = this.status.approve();
+    return this;
   }
 
-  public void reject() {
+  public IOrderStatus reject() {
     this.status = this.status.reject();
+    return this;
   }
 
-  public void ship() {
+  public IOrderStatus ship() {
     this.status = this.status.ship();
+    return this;
   }
 }

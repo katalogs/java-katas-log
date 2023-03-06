@@ -1,5 +1,6 @@
 package com.kata.telldontask.domain.order.status;
 
+import com.kata.telldontask.domain.order.IOrderStatus;
 import com.kata.telldontask.domain.order.OrderStatus;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShippedTwice;
 import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
@@ -7,17 +8,17 @@ import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
 public class OrderShipped extends OrderStatus {
 
   @Override
-  public OrderStatus approve() {
+  public IOrderStatus approve() {
     throw new ShippedOrdersCannotBeChanged();
   }
 
   @Override
-  public OrderStatus reject() {
+  public IOrderStatus reject() {
     throw new ShippedOrdersCannotBeChanged();
   }
 
   @Override
-  public OrderStatus ship() {
+  public IOrderStatus ship() {
     throw new OrderCannotBeShippedTwice();
   }
 }
