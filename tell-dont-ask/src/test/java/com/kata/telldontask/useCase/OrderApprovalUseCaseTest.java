@@ -91,8 +91,8 @@ class OrderApprovalUseCaseTest {
   void shippedOrdersCannotBeApproved() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.approve();
-    initialOrder.ship();
+    initialOrder.approve()
+        .ship();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();
@@ -110,8 +110,8 @@ class OrderApprovalUseCaseTest {
   void shippedOrdersCannotBeRejected() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.approve();
-    initialOrder.ship();
+    initialOrder.approve()
+        .ship();
     orderRepository.addOrder(initialOrder);
 
     OrderApprovalRequest request = new OrderApprovalRequest();

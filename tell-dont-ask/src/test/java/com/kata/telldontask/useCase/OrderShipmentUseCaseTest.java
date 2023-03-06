@@ -72,8 +72,8 @@ class OrderShipmentUseCaseTest {
   void shippedOrdersCannotBeShippedAgain() {
     Order initialOrder = new Order();
     initialOrder.setId(1);
-    initialOrder.approve();
-    initialOrder.ship();
+    initialOrder.approve()
+        .ship();
     orderRepository.addOrder(initialOrder);
 
     OrderShipmentRequest request = new OrderShipmentRequest();
