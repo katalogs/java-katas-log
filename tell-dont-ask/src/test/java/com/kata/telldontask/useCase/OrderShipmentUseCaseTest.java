@@ -7,6 +7,7 @@ import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShipped;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShippedTwice;
+import com.kata.telldontask.domain.order.status.OrderShipped;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.doubles.TestOrderShipment;
 import com.kata.telldontask.useCase.orderShipment.OrderShipmentRequest;
@@ -31,7 +32,7 @@ class OrderShipmentUseCaseTest {
 
     useCase.run(request);
 
-    assertThat(orderRepository.getSavedOrder().getOrderStatus()).isEqualTo(OrderStatusEnum.SHIPPED);
+    assertThat(orderRepository.getSavedOrder().getStatus()).isEqualTo(new OrderShipped());
     assertThat(shipmentService.getShippedOrder()).isEqualTo(initialOrder);
   }
 

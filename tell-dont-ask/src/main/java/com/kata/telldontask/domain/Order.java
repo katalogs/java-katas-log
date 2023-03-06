@@ -1,10 +1,10 @@
 package com.kata.telldontask.domain;
 
 import com.kata.telldontask.domain.common.Amount;
-import com.kata.telldontask.domain.order.OrderAssertion;
 import com.kata.telldontask.domain.order.OrderItem;
 import com.kata.telldontask.domain.order.OrderStatus;
 import com.kata.telldontask.domain.order.OrderStatusEnum;
+import com.kata.telldontask.domain.order.status.OrderCreated;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +18,19 @@ public class Order {
   private int id;
 
   public static Order create(String currency) {
-    Order order = new Order();
-    order.setStatus(OrderStatusEnum.CREATED);
-    order.setItems(new ArrayList<>());
-    order.setCurrency(currency);
-    order.setTotal(new Amount(0.00));
-    order.setTax(new Amount(0.00));
-    return order;
+    return new Order(currency);
+  }
+
+  public Order() {
+    this("EUR");
+  }
+
+  private Order(String currency) {
+    status = new OrderCreated();
+    setItems(new ArrayList<>());
+    setCurrency(currency);
+    setTotal(new Amount(0.00));
+    setTax(new Amount(0.00));
   }
 
   public Amount getTotal() {
@@ -59,12 +65,12 @@ public class Order {
     this.tax = tax;
   }
 
-  public OrderStatusEnum getStatus() {
+  public OrderStatusEnum getOrderStatus() {
     return status.getStatus();
   }
 
-  public OrderStatusEnum getOrderStatus() {
-    return status.getStatus();
+  public OrderStatus getStatus() {
+    return status;
   }
 
   public void setStatus(OrderStatusEnum status) {
@@ -94,7 +100,7 @@ public class Order {
   public void reject() {
     this.status = this.status.reject();
   }
-  
+
   public void ship() {
     this.status = this.status.ship();
   }

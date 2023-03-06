@@ -6,8 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import com.kata.telldontask.domain.Order;
 import com.kata.telldontask.domain.Product;
 import com.kata.telldontask.domain.common.Amount;
-import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.UnknownProduct;
+import com.kata.telldontask.domain.order.status.OrderCreated;
 import com.kata.telldontask.domain.product.Category;
 import com.kata.telldontask.domain.repository.ProductCatalog;
 import com.kata.telldontask.doubles.InMemoryProductCatalog;
@@ -63,7 +63,7 @@ class OrderCreationUseCaseTest {
 
     final Order insertedOrder = orderRepository.getSavedOrder();
 
-    assertThat(insertedOrder.getOrderStatus()).isEqualTo(OrderStatusEnum.CREATED);
+    assertThat(insertedOrder.getStatus()).isEqualTo(new OrderCreated());
     assertThat(insertedOrder.getTotal()).isEqualTo(new Amount("23.20"));
     assertThat(insertedOrder.getTax()).isEqualTo(new Amount("2.13"));
     assertThat(insertedOrder.getCurrency()).isEqualTo("EUR");

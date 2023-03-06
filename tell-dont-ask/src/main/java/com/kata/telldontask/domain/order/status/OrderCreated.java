@@ -11,10 +11,10 @@ public class OrderCreated extends OrderStatus {
     return OrderStatusEnum.CREATED;
   }
 
-    @Override
-    public OrderStatus approve() {
-      return new OrderApproved();
-    }
+  @Override
+  public OrderStatus approve() {
+    return new OrderApproved();
+  }
 
   @Override
   public OrderStatus reject() {

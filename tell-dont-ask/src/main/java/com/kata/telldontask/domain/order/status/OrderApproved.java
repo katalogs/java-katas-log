@@ -12,10 +12,10 @@ public class OrderApproved extends OrderStatus {
   }
 
   // TODO: Approve already approved ?
-    @Override
-    public OrderStatus approve() {
-      return new OrderApproved();
-    }
+  @Override
+  public OrderStatus approve() {
+    return new OrderApproved();
+  }
 
   @Override
   public OrderStatus reject() {

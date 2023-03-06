@@ -8,6 +8,8 @@ import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.ApprovedOrderCannotBeRejected;
 import com.kata.telldontask.domain.order.exception.RejectedOrderCannotBeApproved;
 import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
+import com.kata.telldontask.domain.order.status.OrderApproved;
+import com.kata.telldontask.domain.order.status.OrderRejected;
 import com.kata.telldontask.doubles.TestOrderRepository;
 import com.kata.telldontask.useCase.orderApproval.OrderApprovalRequest;
 import com.kata.telldontask.useCase.orderApproval.OrderApprovalUseCase;
@@ -19,9 +21,8 @@ class OrderApprovalUseCaseTest {
   private final OrderApprovalUseCase useCase = new OrderApprovalUseCase(orderRepository);
 
   @Test
-  void approvedExistingOrder() throws Exception {
+  void approvedExistingOrder() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.CREATED);
     initialOrder.setId(1);
     orderRepository.addOrder(initialOrder);
 
@@ -32,14 +33,12 @@ class OrderApprovalUseCaseTest {
     useCase.run(request);
 
     final Order savedOrder = orderRepository.getSavedOrder();
-    assertThat(savedOrder.getOrderStatus())
-        .isEqualTo(OrderStatusEnum.APPROVED);
+    assertThat(savedOrder.getStatus()).isEqualTo(new OrderApproved());
   }
 
   @Test
-  void rejectedExistingOrder() throws Exception {
+  void rejectedExistingOrder() {
     Order initialOrder = new Order();
-    initialOrder.setStatus(OrderStatusEnum.CREATED);
     initialOrder.setId(1);
     orderRepository.addOrder(initialOrder);
 
@@ -50,8 +49,7 @@ class OrderApprovalUseCaseTest {
     useCase.run(request);
 
     final Order savedOrder = orderRepository.getSavedOrder();
-    assertThat(savedOrder.getOrderStatus())
-        .isEqualTo(OrderStatusEnum.REJECTED);
+    assertThat(savedOrder.getStatus()).isEqualTo(new OrderRejected());
   }
 
   @Test
