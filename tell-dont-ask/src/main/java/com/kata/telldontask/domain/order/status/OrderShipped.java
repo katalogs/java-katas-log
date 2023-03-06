@@ -1,16 +1,10 @@
 package com.kata.telldontask.domain.order.status;
 
 import com.kata.telldontask.domain.order.OrderStatus;
-import com.kata.telldontask.domain.order.OrderStatusEnum;
 import com.kata.telldontask.domain.order.exception.OrderCannotBeShippedTwice;
 import com.kata.telldontask.domain.order.exception.ShippedOrdersCannotBeChanged;
 
 public class OrderShipped extends OrderStatus {
-
-  @Override
-  public OrderStatusEnum getStatus() {
-    return OrderStatusEnum.SHIPPED;
-  }
 
   @Override
   public OrderStatus approve() {
