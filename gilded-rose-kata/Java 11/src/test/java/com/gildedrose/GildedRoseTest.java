@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -18,21 +19,18 @@ class GildedRoseTest {
 
     @Test
     void updateQualityTest() throws UnsupportedEncodingException {
-        // execute main
+        // GIVEN
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
-        String output = os.toString("UTF8");
 
+        // WHEN
         TexttestFixture.main(new String[0]);
-
+        String output = os.toString("UTF8");
         System.out.println(output);
 
-        // add an item
-        // update quality
-        // verify name
-        // verify quality
-        // verify sellIn
+        // THEN
+        Approvals.verify(output);
     }
 
 
