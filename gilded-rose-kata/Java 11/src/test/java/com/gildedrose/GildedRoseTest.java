@@ -2,10 +2,7 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.io.StringWriter;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,11 +17,17 @@ class GildedRoseTest {
     }
 
     @Test
-    void updateQualityTest() throws FileNotFoundException {
+    void updateQualityTest() throws UnsupportedEncodingException {
         // execute main
-        StringWriter stringWriter = new StringWriter();
-        //System.setOut(stringWriter.);
-        TexttestFixture.main(null);
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(os);
+        System.setOut(ps);
+        String output = os.toString("UTF8");
+
+        TexttestFixture.main(new String[0]);
+
+        System.out.println(output);
+
         // add an item
         // update quality
         // verify name
