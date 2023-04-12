@@ -1,0 +1,26 @@
+Cedric was added
+They are player number 1
+Cedric is the current player
+They have rolled a 12
+Cedric's new location is 0
+The category is Pop
+Pop Question 0
+Question was incorrectly answered
+Cedric was sent to the penalty box
+Cedric is the current player
+They have rolled a 2
+Cedric is not getting out of the penalty box
+Cedric is the current player
+They have rolled a 13
+Cedric is getting out of the penalty box
+Cedric's new location is 1
+The category is Science
+Science Question 0
+Answer was correct!!!!
+Cedric now has 1 Gold Coins.
+Cedric is the current player
+They have rolled a 13
+Cedric is getting out of the penalty box
+Cedric's new location is 2
+The category is Sports
+Sports Question 0

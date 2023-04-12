@@ -1,0 +1,74 @@
+Cedric was added
+They are player number 1
+Eloïse was added
+They are player number 2
+Cedric is the current player
+They have rolled a 1
+Cedric's new location is 1
+The category is Science
+Science Question 0
+Answer was corrent!!!!
+Cedric now has 1 Gold Coins.
+Eloïse is the current player
+They have rolled a 2
+Eloïse's new location is 2
+The category is Sports
+Sports Question 0
+Answer was corrent!!!!
+Eloïse now has 1 Gold Coins.
+Cedric is the current player
+They have rolled a 2
+Cedric's new location is 3
+The category is Rock
+Rock Question 0
+Answer was corrent!!!!
+Cedric now has 2 Gold Coins.
+Eloïse is the current player
+They have rolled a 2
+Eloïse's new location is 4
+The category is Pop
+Pop Question 0
+Answer was corrent!!!!
+Eloïse now has 2 Gold Coins.
+Cedric is the current player
+They have rolled a 2
+Cedric's new location is 5
+The category is Science
+Science Question 1
+Answer was corrent!!!!
+Cedric now has 3 Gold Coins.
+Eloïse is the current player
+They have rolled a 2
+Eloïse's new location is 6
+The category is Sports
+Sports Question 1
+Answer was corrent!!!!
+Eloïse now has 3 Gold Coins.
+Cedric is the current player
+They have rolled a 2
+Cedric's new location is 7
+The category is Rock
+Rock Question 1
+Answer was corrent!!!!
+Cedric now has 4 Gold Coins.
+Eloïse is the current player
+They have rolled a 2
+Eloïse's new location is 8
+The category is Pop
+Pop Question 1
+Answer was corrent!!!!
+Eloïse now has 4 Gold Coins.
+Cedric is the current player
+They have rolled a 2
+Cedric's new location is 9
+The category is Science
+Science Question 2
+Answer was corrent!!!!
+Cedric now has 5 Gold Coins.
+Eloïse is the current player
+They have rolled a 2
+Eloïse's new location is 10
+The category is Sports
+Sports Question 2
+Answer was corrent!!!!
+Eloïse now has 5 Gold Coins.
