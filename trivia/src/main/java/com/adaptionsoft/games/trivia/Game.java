@@ -100,51 +100,59 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
+		/*if (isCurrentPlayerInPenaltyBox() && !isGettingOutOfPenaltyBox){
+			goToNextPlayer();
+			return true;
+		}
+
+		if (isGettingOutOfPenaltyBox) {
+			System.out.println("Answer was correct!!!!");
+		} else {
+			System.out.println("Answer was correct!!!!");
+		}
+		return rewardAndGoToNextPlayer();*/
+
 		if (isCurrentPlayerInPenaltyBox()){
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
-				purses[currentPlayer]++;
-				System.out.println(players.get(currentPlayer) 
-						+ " now has "
-						+ purses[currentPlayer]
-						+ " Gold Coins.");
-
-				boolean doesGameContinue = !didPlayerWin();
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				
-				return doesGameContinue;
+				return rewardAndGoToNextPlayer();
 			} else {
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
+				goToNextPlayer();
 				return true;
 			}
-			
-			
-			
 		} else {
-		
 			System.out.println("Answer was corrent!!!!");
-			purses[currentPlayer]++;
-			System.out.println(players.get(currentPlayer) 
-					+ " now has "
-					+ purses[currentPlayer]
-					+ " Gold Coins.");
-			boolean doesGameContinue = !didPlayerWin();
-			currentPlayer++;
-			if (currentPlayer == players.size()) currentPlayer = 0;
-			
-			return doesGameContinue;
+			return rewardAndGoToNextPlayer();
 		}
 	}
-	
+
+	private boolean rewardAndGoToNextPlayer() {
+		rewardCurrentPlayer();
+		boolean doesGameContinue = !didPlayerWin();
+		goToNextPlayer();
+
+		return doesGameContinue;
+	}
+
+	private void rewardCurrentPlayer() {
+		purses[currentPlayer]++;
+		System.out.println(players.get(currentPlayer)
+				+ " now has "
+				+ purses[currentPlayer]
+				+ " Gold Coins.");
+	}
+
+	private void goToNextPlayer() {
+		currentPlayer++;
+		if (currentPlayer == players.size()) currentPlayer = 0;
+	}
+
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
-		
-		currentPlayer++;
-		if (currentPlayer == players.size()) currentPlayer = 0;
+
+		goToNextPlayer();
 		return true;
 	}
 
