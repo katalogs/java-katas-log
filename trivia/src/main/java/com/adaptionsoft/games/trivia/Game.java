@@ -100,7 +100,7 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
-		/*if (isCurrentPlayerInPenaltyBox() && !isGettingOutOfPenaltyBox){
+		if (isCurrentPlayerInPenaltyBox() && !isGettingOutOfPenaltyBox){
 			goToNextPlayer();
 			return true;
 		}
@@ -108,22 +108,9 @@ public class Game {
 		if (isGettingOutOfPenaltyBox) {
 			System.out.println("Answer was correct!!!!");
 		} else {
-			System.out.println("Answer was correct!!!!");
-		}
-		return rewardAndGoToNextPlayer();*/
-
-		if (isCurrentPlayerInPenaltyBox()){
-			if (isGettingOutOfPenaltyBox) {
-				System.out.println("Answer was correct!!!!");
-				return rewardAndGoToNextPlayer();
-			} else {
-				goToNextPlayer();
-				return true;
-			}
-		} else {
 			System.out.println("Answer was corrent!!!!");
-			return rewardAndGoToNextPlayer();
 		}
+		return rewardAndGoToNextPlayer();
 	}
 
 	private boolean rewardAndGoToNextPlayer() {
@@ -149,11 +136,14 @@ public class Game {
 
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
-		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
-		inPenaltyBox[currentPlayer] = true;
-
+		sendCurrentPlayerToPenaltyBox();
 		goToNextPlayer();
 		return true;
+	}
+
+	private void sendCurrentPlayerToPenaltyBox() {
+		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
+		inPenaltyBox[currentPlayer] = true;
 	}
 
 
