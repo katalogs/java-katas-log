@@ -4,32 +4,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Game {
-    ArrayList players = new ArrayList();
-    int[] places = new int[6];
-    boolean[] inPenaltyBox  = new boolean[6];
+    private ArrayList players = new ArrayList();
+    private int[] places = new int[6];
+    private boolean[] inPenaltyBox  = new boolean[6];
     
-    LinkedList q1 = new LinkedList();
-    LinkedList q2 = new LinkedList();
+    private LinkedList popQuestionList = new LinkedList();
+    private LinkedList scienceQuestionList = new LinkedList();
+	private LinkedList sportQuestionList = new LinkedList();
+	private LinkedList rockQuestionList = new LinkedList();
     
-    int currentPlayer = 0;
-    boolean isGettingOutOfPenaltyBox;
+    private int currentPlayer = 0;
+    private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
     	for (int i = 0; i < 50; i++) {
-			q1.addLast("Pop Question " + i);
-			q2.addLast(("Science Question " + i));
-			q3.addLast(("Sports Question " + i));
-			q5.addLast(createQuestion(i));
+			popQuestionList.addLast("Pop Question " + i);
+			scienceQuestionList.addLast("Science Question " + i);
+			sportQuestionList.addLast("Sports Question " + i);
+			rockQuestionList.addLast("Rock Question " + i);
     	}
     }
-
-	public String createQuestion(int index){
-		return "Rock Question " + index;
-	}
-	
-	public boolean isPlayable() {
-		return (howManyPlayers() >= 2);
-	}
 
 	public boolean add(String playerName) {
 		
@@ -88,13 +82,13 @@ public class Game {
 
 	private void askQuestion() {
 		if (currentCategory() == "Pop")
-			System.out.println(q1.removeFirst());
+			System.out.println(popQuestionList.removeFirst());
 		if (currentCategory() == "Science")
-			System.out.println(q2.removeFirst());
+			System.out.println(scienceQuestionList.removeFirst());
 		if (currentCategory() == "Sports")
-			System.out.println(q3.removeFirst());
+			System.out.println(sportQuestionList.removeFirst());
 		if (currentCategory() == "Rock")
-			System.out.println(q5.removeFirst());
+			System.out.println(rockQuestionList.removeFirst());
 	}
 	
 	
@@ -150,9 +144,6 @@ public class Game {
 			return winner;
 		}
 	}
-
-	LinkedList q3 = new LinkedList();
-	LinkedList q5 = new LinkedList();
 	
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
