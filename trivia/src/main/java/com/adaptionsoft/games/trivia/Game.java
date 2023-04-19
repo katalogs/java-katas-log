@@ -2,16 +2,17 @@ package com.adaptionsoft.games.trivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Game {
-    private ArrayList players = new ArrayList();
-    private int[] places = new int[6];
-    private boolean[] inPenaltyBox  = new boolean[6];
+    private final List<String> players = new ArrayList<>();
+    private final int[] places = new int[6];
+    private final boolean[] inPenaltyBox  = new boolean[6];
     
-    private LinkedList popQuestionList = new LinkedList();
-    private LinkedList scienceQuestionList = new LinkedList();
-	private LinkedList sportQuestionList = new LinkedList();
-	private LinkedList rockQuestionList = new LinkedList();
+    private final LinkedList<String> popQuestionList = new LinkedList<>();
+    private final LinkedList<String> scienceQuestionList = new LinkedList<>();
+	private final LinkedList<String> sportQuestionList = new LinkedList<>();
+	private final LinkedList<String> rockQuestionList = new LinkedList<>();
     
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
@@ -25,9 +26,9 @@ public class Game {
     	}
     }
 
-	public boolean add(String playerName) {
-		
-		
+	public boolean addPlayer(String playerName) {
+
+
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
@@ -81,14 +82,20 @@ public class Game {
 	int[] purses  = new int[6];
 
 	private void askQuestion() {
-		if (currentCategory() == "Pop")
-			System.out.println(popQuestionList.removeFirst());
-		if (currentCategory() == "Science")
-			System.out.println(scienceQuestionList.removeFirst());
-		if (currentCategory() == "Sports")
-			System.out.println(sportQuestionList.removeFirst());
-		if (currentCategory() == "Rock")
-			System.out.println(rockQuestionList.removeFirst());
+		switch (currentCategory()) {
+			case "Pop":
+				System.out.println(popQuestionList.removeFirst());
+				break;
+			case "Science":
+				System.out.println(scienceQuestionList.removeFirst());
+				break;
+			case "Sports":
+				System.out.println(sportQuestionList.removeFirst());
+				break;
+			case "Rock":
+				System.out.println(rockQuestionList.removeFirst());
+				break;
+		}
 	}
 	
 	

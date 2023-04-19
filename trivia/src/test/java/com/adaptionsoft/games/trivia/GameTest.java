@@ -17,7 +17,7 @@ public class GameTest {
         System.setOut(new PrintStream(os));
 
         Game game = new Game();
-        game.add("Cedric");
+        game.addPlayer("Cedric");
         game.roll(12);
         game.wrongAnswer();
         game.roll(2);
@@ -36,8 +36,8 @@ public class GameTest {
         System.setOut(new PrintStream(os));
 
         Game game = new Game();
-        game.add("Cedric");
-        game.add("Eloïse");
+        game.addPlayer("Cedric");
+        game.addPlayer("Eloïse");
         game.roll(1);
         game.wasCorrectlyAnswered();
         game.roll(2);
@@ -70,8 +70,8 @@ public class GameTest {
         System.setOut(new PrintStream(os));
 
         Game game = new Game();
-        game.add("Cedric");
-        game.add("Eloïse");
+        game.addPlayer("Cedric");
+        game.addPlayer("Eloïse");
         game.roll(1);
         game.wrongAnswer();
         game.roll(2);
