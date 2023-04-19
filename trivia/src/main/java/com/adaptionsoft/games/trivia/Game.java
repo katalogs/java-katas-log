@@ -1,8 +1,6 @@
 package com.adaptionsoft.games.trivia;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Game {
     private final List<String> players = new ArrayList<>();
@@ -13,6 +11,8 @@ public class Game {
     private final LinkedList<String> scienceQuestionList = new LinkedList<>();
 	private final LinkedList<String> sportQuestionList = new LinkedList<>();
 	private final LinkedList<String> rockQuestionList = new LinkedList<>();
+
+	private final Map<String, LinkedList<String>> questionListByCategoryMap = new HashMap<>();
     
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
@@ -23,8 +23,13 @@ public class Game {
 			scienceQuestionList.addLast("Science Question " + i);
 			sportQuestionList.addLast("Sports Question " + i);
 			rockQuestionList.addLast("Rock Question " + i);
-    	}
-    }
+		}
+		questionListByCategoryMap.put("Pop", popQuestionList);
+		questionListByCategoryMap.put("Science", scienceQuestionList);
+		questionListByCategoryMap.put("Sports", sportQuestionList);
+		questionListByCategoryMap.put("Rock", rockQuestionList);
+
+	}
 
 	public boolean addPlayer(String playerName) {
 
@@ -48,8 +53,7 @@ public class Game {
 				isGettingOutOfPenaltyBox = true;
 
 				System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
-				places[currentPlayer] = places[currentPlayer] + roll;
-				if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+				moveCurrentPlayer(roll);
 
 				System.out.println(players.get(currentPlayer)
 						+ "'s new location is "
@@ -62,9 +66,7 @@ public class Game {
 				}
 
 		} else {
-
-			places[currentPlayer] = places[currentPlayer] + roll;
-			if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
+			moveCurrentPlayer(roll);
 
 			System.out.println(players.get(currentPlayer)
 					+ "'s new location is "
@@ -75,6 +77,10 @@ public class Game {
 
 	}
 
+	private void moveCurrentPlayer(int roll) {
+		places[currentPlayer] = (places[currentPlayer] + roll) % 12;
+	}
+
 	private boolean isCurrentPlayerInPenaltyBox() {
 		return inPenaltyBox[currentPlayer];
 	}
@@ -82,20 +88,7 @@ public class Game {
 	int[] purses  = new int[6];
 
 	private void askQuestion() {
-		switch (currentCategory()) {
-			case "Pop":
-				System.out.println(popQuestionList.removeFirst());
-				break;
-			case "Science":
-				System.out.println(scienceQuestionList.removeFirst());
-				break;
-			case "Sports":
-				System.out.println(sportQuestionList.removeFirst());
-				break;
-			case "Rock":
-				System.out.println(rockQuestionList.removeFirst());
-				break;
-		}
+		System.out.println(questionListByCategoryMap.get(currentCategory()).removeFirst());
 	}
 	
 	
