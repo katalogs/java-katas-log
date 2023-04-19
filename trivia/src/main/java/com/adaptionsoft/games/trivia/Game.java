@@ -6,33 +6,26 @@ public class Game {
     private final List<String> players = new ArrayList<>();
     private final int[] places = new int[6];
     private final boolean[] inPenaltyBox  = new boolean[6];
-    
-    private final LinkedList<String> popQuestionList = new LinkedList<>();
-    private final LinkedList<String> scienceQuestionList = new LinkedList<>();
-	private final LinkedList<String> sportQuestionList = new LinkedList<>();
-	private final LinkedList<String> rockQuestionList = new LinkedList<>();
-
+	private final int[] purses  = new int[6];
 	private final Map<String, LinkedList<String>> questionListByCategoryMap = new HashMap<>();
-    
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
-    	for (int i = 0; i < 50; i++) {
-			popQuestionList.addLast("Pop Question " + i);
-			scienceQuestionList.addLast("Science Question " + i);
-			sportQuestionList.addLast("Sports Question " + i);
-			rockQuestionList.addLast("Rock Question " + i);
-		}
-		questionListByCategoryMap.put("Pop", popQuestionList);
-		questionListByCategoryMap.put("Science", scienceQuestionList);
-		questionListByCategoryMap.put("Sports", sportQuestionList);
-		questionListByCategoryMap.put("Rock", rockQuestionList);
+		questionListByCategoryMap.put("Pop", new LinkedList<>());
+		questionListByCategoryMap.put("Science", new LinkedList<>());
+		questionListByCategoryMap.put("Sports", new LinkedList<>());
+		questionListByCategoryMap.put("Rock", new LinkedList<>());
 
+    	for (int i = 0; i < 50; i++) {
+			questionListByCategoryMap.get("Pop").addLast("Pop Question " + i);
+			questionListByCategoryMap.get("Science").addLast("Science Question " + i);
+			questionListByCategoryMap.get("Sports").addLast("Sports Question " + i);
+			questionListByCategoryMap.get("Rock").addLast("Rock Question " + i);
+		}
 	}
 
 	public boolean addPlayer(String playerName) {
-
 	    players.add(playerName);
 		final int playerNumber = players.size();
 	    places[playerNumber] = 0;
@@ -49,9 +42,8 @@ public class Game {
 		System.out.println("They have rolled a " + roll);
 		
 		if (isCurrentPlayerInPenaltyBox()) {
-			if (roll % 2 != 0) {
+			if (isOdd(roll)) {
 				isGettingOutOfPenaltyBox = true;
-
 				System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
 				moveCurrentPlayerAndPrintCategory(roll);
 				askQuestion();
@@ -59,12 +51,15 @@ public class Game {
 				System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
 				}
-
 		} else {
 			moveCurrentPlayerAndPrintCategory(roll);
 			askQuestion();
 		}
 
+	}
+
+	private boolean isOdd(int roll) {
+		return roll % 2 != 0;
 	}
 
 	private void moveCurrentPlayerAndPrintCategory(int roll) {
@@ -78,8 +73,6 @@ public class Game {
 	private boolean isCurrentPlayerInPenaltyBox() {
 		return inPenaltyBox[currentPlayer];
 	}
-
-	int[] purses  = new int[6];
 
 	private void askQuestion() {
 		System.out.println(questionListByCategoryMap.get(currentCategory()).removeFirst());
