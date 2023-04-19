@@ -28,19 +28,15 @@ public class Game {
 
 	public boolean addPlayer(String playerName) {
 
-
 	    players.add(playerName);
-	    places[howManyPlayers()] = 0;
-	    purses[howManyPlayers()] = 0;
-	    inPenaltyBox[howManyPlayers()] = false;
+		final int playerNumber = players.size();
+	    places[playerNumber] = 0;
+	    purses[playerNumber] = 0;
+	    inPenaltyBox[playerNumber] = false;
 	    
 	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + players.size());
+	    System.out.println("They are player number " + playerNumber);
 		return true;
-	}
-	
-	public int howManyPlayers() {
-		return players.size();
 	}
 
 	public void roll(int roll) {
