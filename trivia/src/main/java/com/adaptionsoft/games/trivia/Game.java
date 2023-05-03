@@ -9,27 +9,15 @@ public class Game {
     private final int[] places = new int[6];
     private final boolean[] inPenaltyBox  = new boolean[6];
 	private final int[] purses  = new int[6];
-	private final List<Deck> decks = new ArrayList<>();
+	private final DecksHolder decksHolder = new DecksHolder();
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
-		decks.add(new Deck(Pop));
-		decks.add(new Deck(Science));
-		decks.add(new Deck(Sports));
-		decks.add(new Deck(Rock));
 
-    	for (int i = 0; i < 50; i++) {
-			getDeckByCategory(Pop).addQuestion(new Question("Pop Question " + i));
-			getDeckByCategory(Science).addQuestion(new Question("Science Question " + i));
-			getDeckByCategory(Sports).addQuestion(new Question("Sports Question " + i));
-			getDeckByCategory(Rock).addQuestion(new Question("Rock Question " + i));
-		}
+
 	}
 
-	private Deck getDeckByCategory(Category category) {
-		return decks.stream().filter(deck -> deck.getCategory().equals(category)).findAny().get();
-	}
 
 	public boolean addPlayer(String playerName) {
 	    players.add(playerName);
@@ -81,7 +69,7 @@ public class Game {
 	}
 
 	private void askQuestion() {
-		System.out.println(decks.get(currentCategory()).drawQuestion());
+		System.out.println(getDeckByCategory(currentCategory()).drawQuestion());
 	}
 	
 	
@@ -100,7 +88,7 @@ public class Game {
 			case 10:
 				return Sports;
 			default:
-				return Category.Rock;
+				return Rock;
 		}
 
 	}
