@@ -12,6 +12,7 @@ public class Game {
 	private final DecksHolder decksHolder = new DecksHolder();
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
+	private Board board = new Board();
     
     public Game(){
 
