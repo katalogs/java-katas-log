@@ -13,7 +13,7 @@ public class Game {
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
-    public  Game(){
+    public Game(){
 
 
 	}
