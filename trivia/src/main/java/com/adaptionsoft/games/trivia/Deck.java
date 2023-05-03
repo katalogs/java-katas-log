@@ -4,6 +4,11 @@ import java.util.LinkedList;
 
 public class Deck {
     private LinkedList<Question> questions = new LinkedList<>();
+
+    public Category getCategory() {
+        return category;
+    }
+
     private Category category;
 
     public Deck(Category category) {

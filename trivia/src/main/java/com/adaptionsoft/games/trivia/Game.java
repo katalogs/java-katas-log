@@ -20,11 +20,15 @@ public class Game {
 		decks.add(new Deck(Rock));
 
     	for (int i = 0; i < 50; i++) {
-			decks.get(Pop).addQuestion(new Question("Pop Question " + i));
-			decks.get(Science).addQuestion(new Question("Science Question " + i));
-			decks.get(Sports).addQuestion(new Question("Sports Question " + i));
-			decks.get(Rock).addQuestion(new Question("Rock Question " + i));
+			getDeckByCategory(Pop).addQuestion(new Question("Pop Question " + i));
+			getDeckByCategory(Science).addQuestion(new Question("Science Question " + i));
+			getDeckByCategory(Sports).addQuestion(new Question("Sports Question " + i));
+			getDeckByCategory(Rock).addQuestion(new Question("Rock Question " + i));
 		}
+	}
+
+	private Deck getDeckByCategory(Category category) {
+		return decks.stream().filter(deck -> deck.getCategory().equals(category)).findAny().get();
 	}
 
 	public boolean addPlayer(String playerName) {
