@@ -7,15 +7,15 @@ public class Game {
     private final int[] places = new int[6];
     private final boolean[] inPenaltyBox  = new boolean[6];
 	private final int[] purses  = new int[6];
-	private final Map<String, LinkedList<String>> questionListByCategoryMap = new HashMap<>();
+	private final Map<Category, LinkedList<String>> questionListByCategoryMap = new HashMap<>();
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
-		questionListByCategoryMap.put("Pop", new LinkedList<>());
-		questionListByCategoryMap.put("Science", new LinkedList<>());
-		questionListByCategoryMap.put("Sports", new LinkedList<>());
-		questionListByCategoryMap.put("Rock", new LinkedList<>());
+		questionListByCategoryMap.put(Category.Pop, new LinkedList<>());
+		questionListByCategoryMap.put(Category.Science, new LinkedList<>());
+		questionListByCategoryMap.put(Category.Sports, new LinkedList<>());
+		questionListByCategoryMap.put(Category.Rock, new LinkedList<>());
 
     	for (int i = 0; i < 50; i++) {
 			questionListByCategoryMap.get("Pop").addLast("Pop Question " + i);
