@@ -9,21 +9,21 @@ public class Game {
     private final int[] places = new int[6];
     private final boolean[] inPenaltyBox  = new boolean[6];
 	private final int[] purses  = new int[6];
-	private final Map<Category, Deck> questionListByCategoryMap = new HashMap<>();
+	private final List<Deck> decks = new ArrayList<>();
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
-		questionListByCategoryMap.put(Pop, new Deck(Pop));
-		questionListByCategoryMap.put(Science, new Deck(Science));
-		questionListByCategoryMap.put(Sports, new Deck(Sports));
-		questionListByCategoryMap.put(Rock, new Deck(Rock));
+		decks.add(new Deck(Pop));
+		decks.add(new Deck(Science));
+		decks.add(new Deck(Sports));
+		decks.add(new Deck(Rock));
 
     	for (int i = 0; i < 50; i++) {
-			questionListByCategoryMap.get(Pop).addQuestion(new Question("Pop Question " + i));
-			questionListByCategoryMap.get(Science).addQuestion(new Question("Science Question " + i));
-			questionListByCategoryMap.get(Sports).addQuestion(new Question("Sports Question " + i));
-			questionListByCategoryMap.get(Rock).addQuestion(new Question("Rock Question " + i));
+			decks.get(Pop).addQuestion(new Question("Pop Question " + i));
+			decks.get(Science).addQuestion(new Question("Science Question " + i));
+			decks.get(Sports).addQuestion(new Question("Sports Question " + i));
+			decks.get(Rock).addQuestion(new Question("Rock Question " + i));
 		}
 	}
 
@@ -77,7 +77,7 @@ public class Game {
 	}
 
 	private void askQuestion() {
-		System.out.println(questionListByCategoryMap.get(currentCategory()).removeFirst());
+		System.out.println(decks.get(currentCategory()).drawQuestion());
 	}
 	
 	

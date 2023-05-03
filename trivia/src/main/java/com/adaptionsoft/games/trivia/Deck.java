@@ -1,10 +1,9 @@
 package com.adaptionsoft.games.trivia;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class Deck {
-    private List<Question> questions = new ArrayList<>();
+    private LinkedList<Question> questions = new LinkedList<>();
     private Category category;
 
     public Deck(Category category) {
@@ -12,6 +11,10 @@ public class Deck {
     }
 
     public void addQuestion(Question question) {
-       this.questions.add(question);
+       this.questions.addLast(question);
+    }
+
+    public Question drawQuestion() {
+        return this.questions.removeFirst();
     }
 }
