@@ -2,26 +2,28 @@ package com.adaptionsoft.games.trivia;
 
 import java.util.*;
 
+import static com.adaptionsoft.games.trivia.Category.*;
+
 public class Game {
     private final List<String> players = new ArrayList<>();
     private final int[] places = new int[6];
     private final boolean[] inPenaltyBox  = new boolean[6];
 	private final int[] purses  = new int[6];
-	private final Map<Category, LinkedList<Question>> questionListByCategoryMap = new HashMap<>();
+	private final Map<Category, Deck> questionListByCategoryMap = new HashMap<>();
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
     public  Game(){
-		questionListByCategoryMap.put(Category.Pop, new LinkedList<>());
-		questionListByCategoryMap.put(Category.Science, new LinkedList<>());
-		questionListByCategoryMap.put(Category.Sports, new LinkedList<>());
-		questionListByCategoryMap.put(Category.Rock, new LinkedList<>());
+		questionListByCategoryMap.put(Pop, new Deck(Pop));
+		questionListByCategoryMap.put(Science, new Deck(Science));
+		questionListByCategoryMap.put(Sports, new Deck(Sports));
+		questionListByCategoryMap.put(Rock, new Deck(Rock));
 
     	for (int i = 0; i < 50; i++) {
-			questionListByCategoryMap.get(Category.Pop).addLast(new Question("Pop Question " + i));
-			questionListByCategoryMap.get(Category.Science).addLast(new Question("Science Question " + i));
-			questionListByCategoryMap.get(Category.Sports).addLast(new Question("Sports Question " + i));
-			questionListByCategoryMap.get(Category.Rock).addLast(new Question("Rock Question " + i));
+			questionListByCategoryMap.get(Pop).addQuestion(new Question("Pop Question " + i));
+			questionListByCategoryMap.get(Science).addQuestion(new Question("Science Question " + i));
+			questionListByCategoryMap.get(Sports).addQuestion(new Question("Sports Question " + i));
+			questionListByCategoryMap.get(Rock).addQuestion(new Question("Rock Question " + i));
 		}
 	}
 
@@ -84,15 +86,15 @@ public class Game {
 			case 0:
 			case 4:
 			case 8:
-				return Category.Pop;
+				return Pop;
 			case 1:
 			case 5:
 			case 9:
-				return Category.Science;
+				return Science;
 			case 2:
 			case 6:
 			case 10:
-				return Category.Sports;
+				return Sports;
 			default:
 				return Category.Rock;
 		}
