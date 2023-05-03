@@ -28,4 +28,8 @@ public class DecksHolder {
                 .filter(deck -> deck.getCategory().equals(category))
                 .findAny().get();
     }
+
+    public Question drawQuestionByCategory(Category category) {
+        return getDeckByCategory(category).drawQuestion();
+    }
 }

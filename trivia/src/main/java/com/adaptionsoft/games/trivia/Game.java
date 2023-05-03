@@ -69,7 +69,7 @@ public class Game {
 	}
 
 	private void askQuestion() {
-		System.out.println(getDeckByCategory(currentCategory()).drawQuestion());
+		System.out.println(decksHolder.drawQuestionByCategory(currentCategory()));
 	}
 	
 	
