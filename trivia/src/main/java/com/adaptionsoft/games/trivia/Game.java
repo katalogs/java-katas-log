@@ -18,10 +18,10 @@ public class Game {
 		questionListByCategoryMap.put(Category.Rock, new LinkedList<>());
 
     	for (int i = 0; i < 50; i++) {
-			questionListByCategoryMap.get("Pop").addLast("Pop Question " + i);
-			questionListByCategoryMap.get("Science").addLast("Science Question " + i);
-			questionListByCategoryMap.get("Sports").addLast("Sports Question " + i);
-			questionListByCategoryMap.get("Rock").addLast("Rock Question " + i);
+			questionListByCategoryMap.get(Category.Pop).addLast("Pop Question " + i);
+			questionListByCategoryMap.get(Category.Science).addLast("Science Question " + i);
+			questionListByCategoryMap.get(Category.Sports).addLast("Sports Question " + i);
+			questionListByCategoryMap.get(Category.Rock).addLast("Rock Question " + i);
 		}
 	}
 
@@ -79,22 +79,22 @@ public class Game {
 	}
 	
 	
-	private String currentCategory() {
+	private Category currentCategory() {
 		switch (places[currentPlayer]) {
 			case 0:
 			case 4:
 			case 8:
-				return "Pop";
+				return Category.Pop;
 			case 1:
 			case 5:
 			case 9:
-				return "Science";
+				return Category.Science;
 			case 2:
 			case 6:
 			case 10:
-				return "Sports";
+				return Category.Sports;
 			default:
-				return "Rock";
+				return Category.Rock;
 		}
 
 	}
