@@ -1,0 +1,9 @@
+Rule: For a list of valid commands, the rover execute the sequence and reports its new position
+
+        Scenario: Curiosity makes its first short drive after landing
+
+            Given the rover curiosity has landed on Mars at coordinates (15, 20) facing North
+
+            When a team member sends command 'LFFFRFLLFFRRFRFFFL'
+
+            Then the rover signals its position at (15, 20) facing North

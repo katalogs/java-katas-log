@@ -10,6 +10,7 @@ You’re part of the team that explores Mars by sending remotely controlled vehi
 - Implement obstacle detection before each move to a new position. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point, stops the sequence and reports the obstacle.
 
 # INPUTS
-A series of commands as string (ex: MLMRRMM) 
+A series of commands as string (ex: FLFRRFF) 
 
 # OUTPUTS
+A string "0:2:N"
