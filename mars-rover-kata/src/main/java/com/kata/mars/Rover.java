@@ -1,6 +1,5 @@
 package com.kata.mars;
 
-import com.kata.mars.direction.West;
 
 public class Rover {
 
@@ -16,20 +15,33 @@ public class Rover {
     public String execute(String command) {
         this.hasError = false;
 
-        String[] commands = command.split("");
-        for (String step : commands) {
-          switch (step) {
-            case "L" -> this.direction = direction.left();
-            case "R" -> this.direction = direction.right();
-            case "F" -> this.position = direction.move(this.position);
-            default -> this.hasError = true;
-          }
-          if (this.hasError) break;
+        Sequence sequence = new Sequence(command);
+        while (sequence.hasNext()) {
+            applyNextCommand(sequence);
         }
+
+        if (sequence.hasError()) {
+            return reportError();
+        }
+
         return reportPosition();
     }
 
+    private void applyNextCommand(Sequence sequence) {
+        String step = sequence.next();
+        switch (step) {
+            case "L" -> this.direction = direction.left();
+            case "R" -> this.direction = direction.right();
+            case "F" -> this.position = direction.move(this.position);
+            default -> sequence.stop();
+        }
+    }
+
+    private String reportError() {
+        return "E:"+reportPosition();
+    }
+
     private String reportPosition() {
-        return (this.hasError ? "E:" : "") + (position.x() + ":" + position.y() + ":") + direction;
+        return (position.x() + ":" + position.y() + ":") + direction;
     }
 }
