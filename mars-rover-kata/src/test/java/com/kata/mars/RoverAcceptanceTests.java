@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RoverAcceptanceTests {
+class RoverAcceptanceTests {
 
     @Test
-    public void test(){
+    void test(){
         Rover rover = new Rover("15:20:N");
 
         String position = rover.execute("LFFFRFLLFFRRFRFFFL");
