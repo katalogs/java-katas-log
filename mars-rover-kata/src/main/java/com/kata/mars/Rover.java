@@ -1,5 +1,7 @@
 package com.kata.mars;
 
+import com.kata.mars.direction.West;
+
 public class Rover {
 
     private Position position;
@@ -19,7 +21,7 @@ public class Rover {
             } else if (step.equals("R")) {
                 this.direction = direction.right();
             } else {
-                if (this.direction.equals(new Direction("W"))) {
+                if (this.direction instanceof West) {
                     this.position = new Position(position.x() - 1, position.y());
                 } else {
                     this.position = new Position(position.x(), position.y() + 1);

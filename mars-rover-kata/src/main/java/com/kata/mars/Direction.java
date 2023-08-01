@@ -1,41 +1,23 @@
 package com.kata.mars;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.kata.mars.direction.East;
+import com.kata.mars.direction.North;
+import com.kata.mars.direction.South;
+import com.kata.mars.direction.West;
 
-public class Direction {
+public interface Direction {
 
-    private final String state;
+  Direction left();
 
-    ArrayList<String> directions = new ArrayList<>(List.of("N","E","S","W"));
+  Direction right();
 
-    public Direction(String s) {
-        this.state = s;
-    }
-
-    public static Direction build(String s) {
-        return new Direction(s);
-    }
-
-    public Direction left() {
-        int index = directions.indexOf(this.state);
-        if(index == 0){
-            return new Direction("W");
-        }
-        return new Direction(this.directions.get(index - 1));
-    }
-
-    public Direction right() {
-        int index = directions.indexOf(this.state);
-        if(index == 3){
-            return new Direction("N");
-        }
-        return new Direction(this.directions.get(index + 1));
-
-    }
-
-    @Override
-    public String toString() {
-        return state;
-    }
+  static Direction build(String s) {
+    return switch (s) {
+      case "N" -> new North();
+      case "E" -> new East();
+      case "S" -> new South();
+      case "W" -> new West();
+      default -> throw new IllegalArgumentException("Invalid direction");
+    };
+  }
 }
