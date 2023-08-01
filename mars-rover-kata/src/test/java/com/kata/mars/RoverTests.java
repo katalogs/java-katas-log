@@ -65,4 +65,21 @@ class RoverTests {
         String newPosition = rover.execute("FF");
         assertThat(newPosition).isEqualTo("2:4:N");
     }
+
+    @Test
+    void should_stop_sequence_and_report_error_if_invalid_command() {
+        String position = "1:2:N";
+        Rover rover = new Rover(position);
+        String newPosition = rover.execute("FLXF");
+        assertThat(newPosition).isEqualTo("E:1:3:W");
+    }
+
+    @Test
+    void should_stop_sequence_and_report_error_if_invalid_command_bis() {
+        String position = "1:2:N";
+        Rover rover = new Rover(position);
+        rover.execute("FLXF");
+        String newPosition = rover.execute("F");
+        assertThat(newPosition).isEqualTo("0:3:W");
+    }
 }

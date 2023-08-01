@@ -1,6 +1,7 @@
 package com.kata.mars.direction;
 
 import com.kata.mars.Direction;
+import com.kata.mars.Position;
 
 public class East implements Direction {
 
@@ -12,6 +13,11 @@ public class East implements Direction {
   @Override
   public Direction right() {
     return new South();
+  }
+
+  @Override
+  public Position move(Position position) {
+    return new Position(position.x() + 1, position.y());
   }
 
   @Override

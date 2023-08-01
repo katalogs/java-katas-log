@@ -20,4 +20,6 @@ public interface Direction {
       default -> throw new IllegalArgumentException("Invalid direction");
     };
   }
+
+  Position move(Position position);
 }

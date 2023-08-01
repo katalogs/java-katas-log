@@ -6,6 +6,7 @@ public class Rover {
 
     private Position position;
     private Direction direction;
+    private boolean hasError;
 
     public Rover(String startPosition) {
         this.position = Position.build(startPosition);
@@ -13,22 +14,22 @@ public class Rover {
     }
 
     public String execute(String command) {
+        this.hasError = false;
 
         String[] commands = command.split("");
         for (String step : commands) {
-            if (step.equals("L")) {
-                this.direction = direction.left();
-            } else if (step.equals("R")) {
-                this.direction = direction.right();
-            } else {
-                if (this.direction instanceof West) {
-                    this.position = new Position(position.x() - 1, position.y());
-                } else {
-                    this.position = new Position(position.x(), position.y() + 1);
-                }
-            }
-
+          switch (step) {
+            case "L" -> this.direction = direction.left();
+            case "R" -> this.direction = direction.right();
+            case "F" -> this.position = direction.move(this.position);
+            default -> this.hasError = true;
+          }
+          if (this.hasError) break;
         }
-        return (position.x() + ":" + position.y() + ":") + direction;
+        return reportPosition();
+    }
+
+    private String reportPosition() {
+        return (this.hasError ? "E:" : "") + (position.x() + ":" + position.y() + ":") + direction;
     }
 }
