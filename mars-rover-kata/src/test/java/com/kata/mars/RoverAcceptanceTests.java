@@ -26,4 +26,13 @@ class RoverAcceptanceTests {
     }
 
 
+    @Test
+    void rover_should_move_arround_the_world(){
+        String position = "0:0:N";
+        Rover rover = new Rover(position);
+        String newPosition = rover.execute("FFFFFLFFFFFLFFFFFLFFFFFL");
+        assertThat(newPosition).isEqualTo("0:0:N");
+    }
+
+
 }
