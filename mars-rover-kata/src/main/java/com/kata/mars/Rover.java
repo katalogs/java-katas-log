@@ -30,9 +30,18 @@ public class Rover {
         switch (step) {
             case "L" -> this.direction = direction.left();
             case "R" -> this.direction = direction.right();
-            case "F" -> this.position = direction.move(this.position);
+            case "F" -> this.position = move();
             default -> sequence.stop();
         }
+    }
+
+    private Position move() {
+
+        Position nextPosition = direction.move(this.position);
+        if(nextPosition.y() > 4){
+            return new Position(nextPosition.x(),0);
+        }
+        return nextPosition;
     }
 
     private String reportError() {

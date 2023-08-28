@@ -2,6 +2,7 @@ package com.kata.mars;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -72,6 +73,19 @@ class RoverTests {
         Rover rover = new Rover(position);
         String newPosition = rover.execute("FLXF");
         assertThat(newPosition).isEqualTo("E:1:3:W");
+    }
+
+
+    @Nested
+    class RoverCrossingEdgingTest {
+
+        @Test
+        void rover_should_move_arround_the_world(){
+            String position = "0:0:N";
+            Rover rover = new Rover(position);
+            String newPosition = rover.execute("FFFFF");
+            assertThat(newPosition).isEqualTo("0:0:N");
+        }
     }
 
 }
