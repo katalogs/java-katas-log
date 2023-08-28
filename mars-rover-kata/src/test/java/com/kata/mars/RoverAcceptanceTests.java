@@ -7,13 +7,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RoverAcceptanceTests {
 
     @Test
-    void test(){
+    void command_first_short_drive_after_landing_should_return_to_initial_position(){
         Rover rover = new Rover("15:20:N");
 
         String position = rover.execute("LFFFRFLLFFRRFRFFFL");
 
         assertThat(position).isEqualTo("15:20:N");
 
+    }
+
+    @Test
+    void rover_received_an_invalid_command_and_stop_and_new_command_should_work() {
+        String position = "1:2:N";
+        Rover rover = new Rover(position);
+        rover.execute("FLXF");
+        String newPosition = rover.execute("F");
+        assertThat(newPosition).isEqualTo("0:3:W");
     }
 
 

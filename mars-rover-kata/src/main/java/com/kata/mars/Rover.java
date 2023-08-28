@@ -5,7 +5,6 @@ public class Rover {
 
     private Position position;
     private Direction direction;
-    private boolean hasError;
 
     public Rover(String startPosition) {
         this.position = Position.build(startPosition);
@@ -13,7 +12,6 @@ public class Rover {
     }
 
     public String execute(String command) {
-        this.hasError = false;
 
         Sequence sequence = new Sequence(command);
         while (sequence.hasNext()) {
