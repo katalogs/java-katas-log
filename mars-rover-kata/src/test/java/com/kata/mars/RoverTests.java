@@ -109,11 +109,7 @@ class RoverTests {
     @Test
     void rover_should_cross_north_edge() {
       String position = "0:4:N";
-      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
-      Rover rover = RoverBuilder.aRover()
-          .withWorldMap(worldMap)
-          .landedAt(position)
-          .build();
+      Rover rover = buildRover(position).build();
 
       String newPosition = rover.execute("F");
 
@@ -123,11 +119,7 @@ class RoverTests {
     @Test
     void rover_should_cross_south_edge() {
       String position = "0:0:S";
-      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
-      Rover rover = RoverBuilder.aRover()
-          .withWorldMap(worldMap)
-          .landedAt(position)
-          .build();
+      Rover rover = buildRover(position).build();
 
       String newPosition = rover.execute("F");
 
@@ -137,11 +129,7 @@ class RoverTests {
     @Test
     void rover_should_cross_west_edge() {
       String position = "0:0:W";
-      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
-      Rover rover = RoverBuilder.aRover()
-          .withWorldMap(worldMap)
-          .landedAt(position)
-          .build();
+      Rover rover = buildRover(position).build();
 
       String newPosition = rover.execute("F");
 
@@ -151,15 +139,18 @@ class RoverTests {
     @Test
     void rover_should_cross_east_edge() {
       String position = "4:0:E";
-      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
-      Rover rover = RoverBuilder.aRover()
-          .withWorldMap(worldMap)
-          .landedAt(position)
-          .build();
+      Rover rover = buildRover(position).build();
 
       String newPosition = rover.execute("F");
 
       assertThat(newPosition).isEqualTo("0:0:E");
+    }
+
+    private RoverBuilder buildRover(String position) {
+      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
+      return RoverBuilder.aRover()
+          .withWorldMap(worldMap)
+          .landedAt(position);
     }
   }
 }
