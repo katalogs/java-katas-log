@@ -9,6 +9,7 @@ class RoverAcceptanceTests {
   @Test
   void command_first_short_drive_after_landing_should_return_to_initial_position() {
     Rover rover = RoverBuilder.aRover()
+        .withWorldMap(new WorldMap(new Position(-180, -180), new Position(180, 180)))
         .landedAt("15:20:N")
         .build();
 

@@ -1,7 +1,5 @@
 package com.kata.mars;
 
-public class WorldMap {
+public record WorldMap(Position bottomLeft, Position topRight) {
 
-  public WorldMap(Position position, Position position1) {
-  }
 }

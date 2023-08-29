@@ -2,7 +2,7 @@ package com.kata.mars;
 
 public class RoverBuilder {
 
-  private WorldMap worldMap;
+  private WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
   private String position;
 
   public static RoverBuilder aRover() {
@@ -20,6 +20,6 @@ public class RoverBuilder {
   }
 
   public Rover build() {
-    return new Rover(position);
+    return new Rover(position, worldMap);
   }
 }

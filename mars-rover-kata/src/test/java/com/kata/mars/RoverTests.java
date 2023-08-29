@@ -107,7 +107,7 @@ class RoverTests {
   class RoverCrossingEdgingTest {
 
     @Test
-    void rover_should_move_around_the_world() {
+    void rover_should_cross_north_edge() {
       String position = "0:4:N";
       WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
       Rover rover = RoverBuilder.aRover()
@@ -118,6 +118,48 @@ class RoverTests {
       String newPosition = rover.execute("F");
 
       assertThat(newPosition).isEqualTo("0:0:N");
+    }
+
+    @Test
+    void rover_should_cross_south_edge() {
+      String position = "0:0:S";
+      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
+      Rover rover = RoverBuilder.aRover()
+          .withWorldMap(worldMap)
+          .landedAt(position)
+          .build();
+
+      String newPosition = rover.execute("F");
+
+      assertThat(newPosition).isEqualTo("0:4:S");
+    }
+
+    @Test
+    void rover_should_cross_west_edge() {
+      String position = "0:0:W";
+      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
+      Rover rover = RoverBuilder.aRover()
+          .withWorldMap(worldMap)
+          .landedAt(position)
+          .build();
+
+      String newPosition = rover.execute("F");
+
+      assertThat(newPosition).isEqualTo("4:0:W");
+    }
+
+    @Test
+    void rover_should_cross_east_edge() {
+      String position = "4:0:E";
+      WorldMap worldMap = new WorldMap(new Position(0, 0), new Position(4, 4));
+      Rover rover = RoverBuilder.aRover()
+          .withWorldMap(worldMap)
+          .landedAt(position)
+          .build();
+
+      String newPosition = rover.execute("F");
+
+      assertThat(newPosition).isEqualTo("0:0:E");
     }
   }
 }
