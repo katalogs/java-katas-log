@@ -6,11 +6,13 @@ public class Rover {
   private final WorldMap worldMap;
   private Position position;
   private Direction direction;
+  private GPS gps;
 
   public Rover(String startPosition, WorldMap worldMap) {
     this.position = Position.build(startPosition);
     this.direction = Direction.build(startPosition.split(":")[2]);
     this.worldMap = worldMap;
+    this.gps = new GPS(worldMap);
   }
 
   public String execute(String command) {
@@ -37,25 +39,7 @@ public class Rover {
   }
 
   private Position move() {
-    Position nextPosition = direction.move(this.position);
-
-    if (nextPosition.y() > worldMap.topRight().y()) {
-      return new Position(nextPosition.x(), worldMap.bottomLeft().y());
-    }
-
-    if (nextPosition.y() < worldMap.bottomLeft().y()) {
-      return new Position(nextPosition.x(), worldMap.topRight().y());
-    }
-
-    if (nextPosition.x() < worldMap.bottomLeft().x()) {
-      return new Position(worldMap.topRight().x(), nextPosition.y());
-    }
-
-    if (nextPosition.x() > worldMap.topRight().x()) {
-      return new Position(worldMap.bottomLeft().x(), nextPosition.y());
-    }
-
-    return nextPosition;
+    return gps.move(position, direction);
   }
 
   private String reportError() {
