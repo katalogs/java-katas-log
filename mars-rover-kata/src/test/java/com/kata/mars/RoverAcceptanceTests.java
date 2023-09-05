@@ -1,5 +1,7 @@
 package com.kata.mars;
 
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,9 +27,10 @@ class RoverAcceptanceTests {
         .landedAt(position)
         .build();
 
-    rover.execute("FLXF");
+    String newPosition = rover.execute("FLXF");
+    assertThat(newPosition).isEqualTo("E:1:3:W");
 
-    String newPosition = rover.execute("F");
+    newPosition = rover.execute("F");
     assertThat(newPosition).isEqualTo("0:3:W");
   }
 
@@ -50,4 +53,20 @@ class RoverAcceptanceTests {
     newPosition = rover.execute("LFFFFF");
     assertThat(newPosition).isEqualTo("0:0:E");
   }
+
+  @Test
+  void rover_should_detect_obstacle_on_his_way() {
+    WorldMap wolrdMap = new WorldMap(new Position(-180, -180), new Position(180, 180), List.of(new Obstacle(0, 2)));
+
+    String position = "0:0:N";
+    Rover rover = RoverBuilder.aRover()
+        .withWorldMap(wolrdMap)
+        .landedAt(position)
+        .build();
+
+    String newPosition = rover.execute("FFFFF");
+
+    assertThat(newPosition).isEqualTo("O:0:1:N");
+  }
+
 }
