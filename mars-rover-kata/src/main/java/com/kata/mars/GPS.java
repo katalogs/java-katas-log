@@ -2,7 +2,7 @@ package com.kata.mars;
 
 public class GPS {
 
-  private WorldMap worldMap;
+  private final WorldMap worldMap;
 
   public GPS(WorldMap worldMap) {
     this.worldMap = worldMap;
@@ -10,24 +10,42 @@ public class GPS {
 
   public Position move(Position position, Direction direction) {
     Position nextPosition = direction.move(position);
+    int x = nextPosition.x();
+    int y = nextPosition.y();
 
-    if (nextPosition.y() > worldMap.topRight().y()) {
-      return new Position(nextPosition.x(), worldMap.bottomLeft().y());
+    if (isNorthCrossed(nextPosition)) {
+      y = worldMap.bottomLeft().y();
     }
 
-    if (nextPosition.y() < worldMap.bottomLeft().y()) {
-      return new Position(nextPosition.x(), worldMap.topRight().y());
+    if (isSouthCrossed(nextPosition)) {
+      y = worldMap.topRight().y();
     }
 
-    if (nextPosition.x() < worldMap.bottomLeft().x()) {
-      return new Position(worldMap.topRight().x(), nextPosition.y());
+    if (isWestCrossed(nextPosition)) {
+      x = worldMap.topRight().x();
     }
 
-    if (nextPosition.x() > worldMap.topRight().x()) {
-      return new Position(worldMap.bottomLeft().x(), nextPosition.y());
+    if (isEastCrossed(nextPosition)) {
+      x = worldMap.bottomLeft().x();
     }
 
-    return nextPosition;
+    return new Position(x, y);
+  }
+
+  private boolean isEastCrossed(Position nextPosition) {
+    return nextPosition.x() > worldMap.topRight().x();
+  }
+
+  private boolean isWestCrossed(Position nextPosition) {
+    return nextPosition.x() < worldMap.bottomLeft().x();
+  }
+
+  private boolean isSouthCrossed(Position nextPosition) {
+    return nextPosition.y() < worldMap.bottomLeft().y();
+  }
+
+  private boolean isNorthCrossed(Position nextPosition) {
+    return nextPosition.y() > worldMap.topRight().y();
   }
 
   public boolean hasObstacleAt(Position position) {
