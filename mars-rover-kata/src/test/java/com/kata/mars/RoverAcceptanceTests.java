@@ -56,11 +56,11 @@ class RoverAcceptanceTests {
 
   @Test
   void rover_should_detect_obstacle_on_his_way() {
-    WorldMap wolrdMap = new WorldMap(new Position(-180, -180), new Position(180, 180), List.of(new Obstacle(0, 2)));
+    WorldMap worldMap = new WorldMap(new Position(-180, -180), new Position(180, 180), List.of(new Obstacle(0, 2)));
 
     String position = "0:0:N";
     Rover rover = RoverBuilder.aRover()
-        .withWorldMap(wolrdMap)
+        .withWorldMap(worldMap)
         .landedAt(position)
         .build();
 
