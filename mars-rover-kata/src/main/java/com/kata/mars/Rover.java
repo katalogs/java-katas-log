@@ -3,16 +3,16 @@ package com.kata.mars;
 
 public class Rover {
 
-  private final WorldMap worldMap;
+  private final Reporter reporter;
   private Position position;
   private Direction direction;
-  private GPS gps;
+  private final GPS gps;
 
   public Rover(String startPosition, WorldMap worldMap) {
     this.position = Position.build(startPosition);
     this.direction = Direction.build(startPosition.split(":")[2]);
-    this.worldMap = worldMap;
     this.gps = new GPS(worldMap);
+    this.reporter = new Reporter();
   }
 
   public String execute(String command) {
@@ -21,15 +21,7 @@ public class Rover {
       applyNextCommand(sequence);
     }
 
-    if (sequence.hasError()) {
-      return reportError(sequence.getError());
-    }
-
-    return reportPosition();
-  }
-
-  private String reportObstacle() {
-    return "O:" + reportPosition();
+    return this.reporter.report(sequence, position, direction);
   }
 
   private void applyNextCommand(Sequence sequence) {
@@ -49,16 +41,5 @@ public class Rover {
       return;
     }
     this.position = nextPosition;
-  }
-
-  private String reportError(RoverError roverError) {
-    if (roverError instanceof ObstacleError) {
-      return reportObstacle();
-    }
-    return "E:" + reportPosition();
-  }
-
-  private String reportPosition() {
-    return (position.x() + ":" + position.y() + ":") + direction;
   }
 }
