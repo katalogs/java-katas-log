@@ -18,15 +18,11 @@ public class Rover {
   public String execute(String command) {
     Sequence sequence = new Sequence(command);
     while (sequence.hasNext()) {
-      try {
-        applyNextCommand(sequence);
-      } catch (ObstacleFoundException e) {
-        return reportObstacle();
-      }
+      applyNextCommand(sequence);
     }
 
     if (sequence.hasError()) {
-      return reportError();
+      return reportError(sequence.getError());
     }
 
     return reportPosition();
@@ -41,20 +37,24 @@ public class Rover {
     switch (step) {
       case "L" -> this.direction = direction.left();
       case "R" -> this.direction = direction.right();
-      case "F" -> move();
+      case "F" -> move(sequence);
       default -> sequence.stop();
     }
   }
 
-  private void move() {
+  private void move(Sequence sequence) {
     Position nextPosition = gps.move(position, direction);
     if (gps.hasObstacleAt(nextPosition)) {
-//TODO : stop the sequence with an obstacle error
+      sequence.stop(new ObstacleError());
+      return;
     }
     this.position = nextPosition;
   }
 
-  private String reportError() {
+  private String reportError(RoverError roverError) {
+    if (roverError instanceof ObstacleError) {
+      return reportObstacle();
+    }
     return "E:" + reportPosition();
   }
 

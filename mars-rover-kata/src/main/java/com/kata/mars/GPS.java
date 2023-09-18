@@ -11,8 +11,6 @@ public class GPS {
   public Position move(Position position, Direction direction) {
     Position nextPosition = direction.move(position);
 
-    checkIfNextPositionIsAnObstacle(nextPosition);
-
     if (nextPosition.y() > worldMap.topRight().y()) {
       return new Position(nextPosition.x(), worldMap.bottomLeft().y());
     }
@@ -30,14 +28,6 @@ public class GPS {
     }
 
     return nextPosition;
-  }
-
-  private void checkIfNextPositionIsAnObstacle(Position nextPosition) {
-    worldMap.obstacles().forEach(obstacle -> {
-      if (obstacle.x() == nextPosition.x() && obstacle.y() == nextPosition.y()) {
-        throw new ObstacleFoundException();
-      }
-    });
   }
 
   public boolean hasObstacleAt(Position position) {

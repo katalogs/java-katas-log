@@ -9,6 +9,7 @@ public record WorldMap(Position bottomLeft, Position topRight, List<Obstacle> ob
     this(bottomLeft, topRight, new ArrayList<>());
   }
 
+  //todo correct this i think
   public boolean isNextPositionIsAnObstacle(Position position) {
     for (Obstacle obstacle : obstacles) {
       if (obstacle.x() == position.x() && obstacle.y() == position.y()) {

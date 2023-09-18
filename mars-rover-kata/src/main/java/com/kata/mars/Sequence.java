@@ -31,4 +31,8 @@ public class Sequence {
   public boolean hasError() {
     return this.error != null;
   }
+
+  public RoverError getError() {
+    return error;
+  }
 }
